@@ -1,0 +1,16 @@
+---
+import { changeLanguage } from "i18next";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import NewsCardAPI from "../../components/NewsCardAPI.astro";
+
+changeLanguage("en");
+
+const pageTitle = "Ajankohtaista";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <h1 class=''>Ajankohtaista</h1>
+  <section>
+    <!-- <NewsCardAPI /> -->
+  </section>
+</BaseLayout>

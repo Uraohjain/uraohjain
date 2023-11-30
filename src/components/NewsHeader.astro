@@ -1,0 +1,32 @@
+---
+import { formatDate } from '../js/utils';
+import { Picture } from '@astrojs/image/components';
+import i18next, { t, changeLanguage } from 'i18next';
+import { Trans, HeadHrefLangs } from 'astro-i18next/components';
+const { title, description, date, image } = Astro.props;
+
+changeLanguage('fi');
+---
+
+<header>
+  <div>
+    <!-- <p class='font-bold'>{formatDate(date)}</p> -->
+    <h2 class='text-center mt-10 mb-16'>{t('news.pageTitle')}</h2>
+
+    <!-- <Picture
+      src={image.src}
+      alt={image.alt}
+      widths={[395, 400, 800]}
+      sizes='(max-width: 800px) 100vw, 800px'
+      aspectRatio='16:9'
+      format='webp'
+    /> -->
+    <img
+      class='float-right md:pl-10'
+      src='/img/news/news-1.jpg'
+      alt='Kehitä osaamistasi joustavasti! image'
+    />
+    <h2>{title}</h2>
+    <!-- <p>{description}</p> -->
+  </div>
+</header>

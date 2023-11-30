@@ -1,0 +1,18 @@
+---
+import { changeLanguage } from "i18next";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TermsOfService from "../../components/TermsOfService.jsx";
+
+changeLanguage("en");
+
+const pageTitle = "Ilmoittautuminen";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <section>
+    <h2 class='text-center mt-10 mb-16'>
+      {pageTitle}
+    </h2>
+    <TermsOfService client:load />
+  </section>
+</BaseLayout>

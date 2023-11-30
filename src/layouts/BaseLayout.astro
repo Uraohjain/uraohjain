@@ -1,0 +1,33 @@
+---
+import '../styles/index.scss';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import i18next, { t } from 'i18next';
+import { HeadHrefLangs } from 'astro-i18next/components';
+const { pageTitle } = Astro.props;
+---
+
+<html lang={i18next.language}>
+  <head>
+    <meta charset='utf-8' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Jost:wght@500;700&family=Nunito:wght@200;300;600&display=swap');
+    </style>
+    <meta name='viewport' content='width=device-width' />
+    <meta name='generator' content={Astro.generator} />
+    <HeadHrefLangs />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <header>
+      <Header />
+    </header>
+    <div class='main-wrapper'>
+      <slot />
+    </div>
+    <footer>
+      <Footer />
+    </footer>
+  </body>
+</html>

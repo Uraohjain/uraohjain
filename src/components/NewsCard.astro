@@ -1,0 +1,40 @@
+---
+import { localizePath } from 'astro-i18next';
+import i18next, { t, changeLanguage } from 'i18next';
+import { Trans, HeadHrefLangs } from 'astro-i18next/components';
+// library imports
+import { Image } from '@astrojs/image/components';
+
+const { frontmatter, url, tagType, showImage = 'block' } = Astro.props;
+
+const Tag = tagType;
+
+const { title, date, author, image, description } = frontmatter;
+---
+
+<article>
+  <a href={url} aria-hidden='true' tabindex='-1' class={showImage}>
+    <!-- <Image
+      src={image.src}
+      alt={image.alt}
+      width='250'
+      height='325'
+      format='webp'
+      fit='cover'
+      quality={80}
+      aspectRatio='4:1'
+    /> -->
+
+    <!-- Temporary code to display only one news card. Use Image component above to display more than one news -->
+    <img src={image.src} alt={image.alt} />
+  </a>
+  <Tag class='uppercase text-xl'>
+    <a href={localizePath(url)}>{title}</a>
+  </Tag>
+
+  <!-- <a href={url}>
+    <p>{description}</p>
+  </a> -->
+
+  <p>{t('news.readMore')}...</p>
+</article>
