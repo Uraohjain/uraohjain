@@ -1,33 +1,27 @@
 ---
-import '../styles/index.scss';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import i18next, { t } from 'i18next';
-import { HeadHrefLangs } from 'astro-i18next/components';
+import "@fontsource-variable/nunito";
+import "@fontsource-variable/jost";
+import "../styles/index.scss";
+import HeadCommon from "../components/headCommon.astro";
+import HeadSEO from "../components/headSeo.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
 const { pageTitle } = Astro.props;
+
+const { pathname } = Astro.url;
 ---
 
-<html lang={i18next.language}>
+<html lang="en">
   <head>
-    <meta charset='utf-8' />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Jost:wght@500;700&family=Nunito:wght@200;300;600&display=swap');
-    </style>
-    <meta name='viewport' content='width=device-width' />
-    <meta name='generator' content={Astro.generator} />
-    <HeadHrefLangs />
+    <HeadCommon />
     <title>{pageTitle}</title>
   </head>
   <body>
     <header>
       <Header />
     </header>
-    <div class='main-wrapper'>
-      <slot />
-    </div>
-    <footer>
-      <Footer />
-    </footer>
+    <slot />
+    <Footer />
   </body>
 </html>

@@ -1,19 +1,17 @@
 ---
-import { changeLanguage } from "i18next";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import TestForm from "../../components/TestForm.jsx";
-import MultiStepper from "../../components/MultiStepper";
 
-changeLanguage("en");
-
-const pageTitle = "Ilmoittautuminen";
+const pageTitle = "Signup";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <section>
-    <h2 class='text-center mt-10 mb-16'>
-      {pageTitle}
-    </h2>
-    <TestForm client:load />
-  </section>
+  <main class="px-[5.625rem]">
+    <section>
+      <h2 class="text-center mt-10 mb-16">
+        {pageTitle}
+      </h2>
+      <TestForm client:load />
+    </section>
+  </main>
 </BaseLayout>

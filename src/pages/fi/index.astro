@@ -3,32 +3,31 @@ import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import NewsCard from "../../components/NewsCard.astro";
 
-const allNews = await Astro.glob("../../pages/en/news/*.md");
-const pageTitle = "Home";
+const allNews = await Astro.glob("../../pages/fi/news/*.md");
+const pageTitle = "Etusivu";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <main class="px-[5.625rem]">
     <section class="md:text-center px-0 md:px-20">
       <h1 class="text-center">
-        CAREERDRIVER+ <br /> Towards employment through supplemented ICT, <br />
-        software development and media know-how
+        URAOHJAIN <br /> ICT-, ohjelmistokehitys- ja media-alan osaamisen <br
+        />täydentämisellä kohti työllistymistäv.
       </h1>
       <p class="md:text-2xl mb-4 md:mb-14 leading-9">
-        Come supplement your skills to make them meet the rapidly changing needs
-        of working life, plan your career and learn more about verbalising and
-        marketing your own know-how. The CareerDriver service will provide you
-        with an opportunity to strengthen your professional networks. You will
-        get to discuss your everyday wellbeing to support your employment. The
-        competence paths are built from the ICT, software development and media
-        study offerings of Laurea and Metropolia. The duration of the competence
-        paths is 3–6 months.
+        Tule täydentämään osaamistasi työelämän nopeita muutostarpeita
+        vastaavaksi, suunnittelemaan uraasi ja oivaltamaan lisää oman osaamisesi
+        markkinoinnista. Uraohjain-palvelu tarjoaa sinulle mahdollisuuden
+        vahvistaa ammatillisia verkostojasi. Pääset keskustelemaan oman arkesi
+        hyvinvoinnista työllistymisen tueksi. Osaamispolut rakentuvat Laurean ja
+        Metropolian ICT-, ohjelmistokehitys- ja media-alojen opintotarjonnasta.
+        Osaamispolut ovat kestoltaan 3–6kk.
       </p>
     </section>
     <!-- Benefits section -->
     <section class="md:flex justify-around">
       <div class="benefits-list md:basis-2/3">
-        <h3>The CareerDriver service will provide you with:</h3>
+        <h3>Uraohjain-palvelussa saat:</h3>
         <ul class="text-xl font-semibold mt-10 ml-0">
           <li class="flex flex-row items-center my-4">
             <div class="relative w-14 h-14 bg-white rounded-full mr-4">
@@ -39,7 +38,7 @@ const pageTitle = "Home";
                 height={56}
               />
             </div>
-            <p>Individually tailored competence paths</p>
+            <p>Yksilölliset räätälöidyt osaamispolut</p>
           </li>
 
           <li class="flex flex-row items-center">
@@ -51,7 +50,7 @@ const pageTitle = "Home";
                 height={56}
               />
             </div>
-            <p>Individual guidance discussions</p>
+            <p>Yksilöidyt ohjauskeskustelut</p>
           </li>
           <li class="flex flex-row items-center my-4">
             <div class="relative w-14 h-14 bg-white rounded-full mr-4">
@@ -62,7 +61,7 @@ const pageTitle = "Home";
                 height={56}
               />
             </div>
-            <p>Tools for planning your career</p>
+            <p>Työkaluja urasuunnitteluun</p>
           </li>
           <li class="flex flex-row items-center">
             <div class="relative w-14 h-14 bg-white rounded-full mr-4">
@@ -73,7 +72,7 @@ const pageTitle = "Home";
                 height={56}
               />
             </div>
-            <p>Guidance counselling</p>
+            <p>Optino-ohjaus</p>
           </li>
           <li class="flex flex-row items-center">
             <div class="relative w-14 h-14 bg-white rounded-full mr-4">
@@ -84,40 +83,39 @@ const pageTitle = "Home";
                 height={56}
               />
             </div>
-            <p>Wellbeing discussions</p>
+            <p>Hyvinvoitnukeskustelut</p>
           </li>
           <li class="flex flex-row items-center">
-            <div class="relative w-14 h-14 bg-white rounded-full mr-4">
+            <figure class="relative w-14 h-14 bg-white rounded-full mr-4">
               <Image
                 src="/img/frontpage/networking.svg"
                 alt="Networking logo"
                 width={56}
                 height={56}
               />
-            </div>
-            <p>Cooperation and networking</p>
+            </figure>
+            <p>Ammatillisen verkostoitumisen tukeminen</p>
           </li>
         </ul>
       </div>
-      <div class="hidden md:block md:basis-1/3 ml-6">
+      <figure class="hidden md:block md:basis-1/3 ml-6">
         <Image
           src="/img/frontpage/benefits-man.png"
-          alt="Benefits image"
+          alt="services that we Provide"
           width={1000}
           height={1000}
         />
-      </div>
+      </figure>
     </section>
     <!-- Video section -->
     <section class="bg-gray-200 mt-6 px-4 md:px-36 py-6 text-center">
-      <h2>Enhance Your Career Prospects and Boost Your Expertise</h2>
+      <h2>Kirkasta urasuunnitelmasi ja vahvista osaamistasi</h2>
       <p>
-        Are you eager to align your skills with the ever-changing demands of the
-        IT industry? Seeking a personalized path to excel in the dynamic world
-        of media? Contemplating your next career move and how to effectively
-        showcase your capabilities? Uraohjain service empowers you to elevate
-        your skill set and provides tailored solutions to your career inquiries.
-        Unleash your potential with us!
+        Haluatko päivittää osaamisesi vastaamaan IT-alojen nopeasti kehittyviä
+        työelämän tarpeita? Etsitkö omaa tapaasi työllistyä media-alalla?
+        Mietitkö urasi seuraavaa askelta tai toimivaa tapaa kertoa
+        osaamisestasi? Uraohjain-palvelussa pääset kehittämään osaamistasi ja
+        löytämään ratkaisuja uraasi koskeviin kysymyksiin.
       </p>
       <video
         class="mx-auto py-4 md:py-8 w-full md:w-3/4"
@@ -126,29 +124,20 @@ const pageTitle = "Home";
         controls
         muted
       >
-        <source src="/videos/uraohjain-presentation-en.mp4" type="video/mp4" />
+        <source src="/videos/uraohjain-presentation.mp4" type="video/mp4" />
       </video>
     </section>
     <!-- Profile section -->
     <section class="md:flex justify-around mb-4 md:mb-16 mt-6">
       <div class="md:basis-3/5 green-bg py-6 px-6 md:py-12 md:px-12">
-        <h3 class="text-white">
-          For whom is the CareerDriver service intended?
-        </h3>
+        <h3 class="text-white">Kennelle Uraohjain-palvelu on?</h3>
         <ul class="text-white list-disc ml-6">
+          <li>Olet suorittanut toisen tai korkea-asteen tutkinnon</li>
           <li>
-            You have obtained at least an upper secondary or higher education
-            degree.
+            Tavoitteesi on työllistyä ICT-, ohjelmistokehitys tai media-alalle
           </li>
-          <li>
-            Your goal is to find employment in the field of ICT, software
-            development or media.
-          </li>
-          <li>Your Finnish or English skills are at least at the B2 level.</li>
-          <li>
-            You are registered as an unemployed job seeker at Helsinki
-            Employment Services.
-          </li>
+          <li>Suomen tai englanninkielen tasosi on vähintään B2</li>
+          <li>Olet Helsingin työllisyyspalveluiden asiakas</li>
         </ul>
       </div>
       <!-- Take test section -->
@@ -157,28 +146,26 @@ const pageTitle = "Home";
       >
         <h2 class="green-color underline font-semibold">
           <a href="/signup">
-            Take our test to see <br />
-            whether the service is <br />
-            right for you and sign up!
+            Testaa sopiiko <br />Uraohjain-palvelu <br />sinulle ja ilmoittaudu!
           </a>
         </h2>
       </div>
     </section>
     <!-- Service path -->
     <section class="flex flex-col justify-center items-center">
-      <h2>Service path</h2>
-      <p>Duration 3-6 months</p>
+      <h2>Palvelupolku</h2>
+      <p>Kesto 3-6kk</p>
       <Image
         src="/img/frontpage/service-path.png"
         alt="service-path"
-        width={2000}
-        height={2000}
+        width={1000}
+        height={1000}
       />
     </section>
     <!-- News section -->
     <section>
       <div class="flex justify-center my-7 md:mt-20 md:mb-16">
-        <h2 class="">News</h2>
+        <h2 class="">Ajankohtaista</h2>
       </div>
 
       <div class="flex flex-col md:flex-row md:w-2/4 gap-4">

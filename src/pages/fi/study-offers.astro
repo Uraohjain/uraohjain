@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const pageTitle = "Study Offerings";
+const pageTitle = "Opintotarjonta";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -10,10 +10,15 @@ const pageTitle = "Study Offerings";
       class="flex flex-col justify-center items-center gap-4"
       id="study-offers"
     >
-      <h1 class="text-[2rem] font-bold">Study offerings</h1>
-      <p class="p-3 md:p-0">
-        With CareerDriver, you can complement your skills with studies in ICT,
-        software development or media.
+      <h1 class="text-[2rem] font-bold">{pageTitle}</h1>
+      <p class="p-3 md:p-0 text-center">
+        Uraohjain-palvelussa voit täydentää osaamistasi ICT-, ohjelmistokehitys-
+        tai media-alan opinnoilla. Pääset valitsemaan sinulle sopivan
+        osaamiskokonaisuuden opinto-ohjaajan tukemana. Osaamiskokonaisuudet on
+        suunniteltu vastaamaan työelämän osaamistarpeita. Kurssit suoritetaan
+        pääosin itsenäisesti etätoteutuksena. Osaamiskokonaisuudet rakentuvat
+        Laurean ja Metropolian ICT-, ohjelmistokehitys- ja media-alojen
+        opintotarjonnasta.
       </p>
       <div class="flex justify-center gap-10 anchors">
         <a class="flex flex-col items-center" href="#ict">

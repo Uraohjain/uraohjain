@@ -1,7 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import TestForm from "../../components/TestForm";
 
-const pageTitle = "Term of Service";
+const pageTitle = "Ilmoittautuminen";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -10,7 +11,7 @@ const pageTitle = "Term of Service";
       <h2 class="text-center mt-10 mb-16">
         {pageTitle}
       </h2>
-      <TermsOfService client:load />
+      <TestForm client:load />
     </section>
   </main>
 </BaseLayout>

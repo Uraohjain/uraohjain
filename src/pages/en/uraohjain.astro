@@ -1,59 +1,73 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import i18next, { t, changeLanguage } from "i18next";
-import { Trans } from "astro-i18next/components";
 
-changeLanguage("en");
-
-const pageTitle = "URAOHJAIN+ -yhteiskehitt\u00E4mishanke";
+const pageTitle = "CAREERDRIVER+ project";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <section>
-    <h2 class='text-center mt-10 mb-16'>
-      <!-- {pageTitle} -->
-      {t('project.pageTitle')}
-    </h2>
+  <main class="px-[5.625rem]">
+    <section>
+      <h2 class="text-center mt-10 mb-16">CAREERDRIVER+ project</h2>
 
-    <div class='md:grid md:grid-cols-2'>
-      <div class='p-8 md:p-18 pink-bg'>
-        <h2>{t('project.title')}</h2>
-        <p>
-          <Trans i18nKey='project.description'>
-            URAOHJAIN+ -hanke on noussut tarpeesta lisätä ICT-, ohjelmistokehitys- ja media-alojen
-            työnhakijoiden ja työnantajien kohtaamista. Hankkeessa kehitettävä Uraohjain-palvelu
-            vahvistaa ICT-, ohjelmistokehitys- ja media-alan työnhakijoiden osaamista vastaamaan
-            työelämän tarpeisiin. Samalla vastataan yritysten rekrytointihaasteeseen.
-            <br /><br />
-            Uraohjain-palvelu on tarkoitettu ICT-, ohjelmistokehitys- ja media-alan työttömille työnhakijoille,
-            joilla on tarve täydentää osaamistaan ja kehittää työllistymis- ja urasuunnittelutaitojaan.
-            Palvelun aikana vahvistetaan arkea ja työllistymistä tukevaa hyvinvointia.
-            <br /><br />
-            URAOHJAIN+ on Stadin ammattiopiston, Laurea-ammattikorkeakoulun ja Metropolia Ammattikorkeakoulun
-            yhteishanke. Yhteistyötä tehdään Helsingin kaupungin Työllisyyspalveluiden sekä yritysten
-            kanssa. Euroopan unionin sosiaalirahasto osarahoittaa hanketta.
-          </Trans>
+      <div class="md:grid md:grid-cols-2">
+        <div class="p-8 md:p-18 pink-bg">
+          <h2>CAREERDRIVER+ builds a new model for sustainable employment</h2>
+          <p>
+            The CareerDriver+ development project has developed a new operating
+            model to promote employment and is seeking businesses to cooperate
+            with. The partners we seek are ready to contribute to the
+            development of labour available to make it best suit their own
+            needs. <br />
+            <br />The CareerDriver service involves using businesses’ labour
+            needs as the basis for developing job seekers’ know-how and other
+            competences, both at the general level and business-specifically.
+            The business’s cooperation with the service will consist of meetings
+            and presentation events to chart know-how and labour needs, and
+            taking job seekers participating in the service into account in
+            recruitment. <br />
+            <br /> In the CareerDriver service, job seekers will develop their know-how
+            in the field of ICT / software development / media and their career management
+            skills and strengthen their operational capabilities. The basics of the
+            operating model were established in previous projects that achieved good
+            results. The service is intended for unemployed job seekers who have
+            an upper secondary or higher education degree and are looking for employment
+            in the fields of ICT, software development or media. <br />
+            <br />The CareerDriver+ project is carried out by the City of
+            Helsinki (Helsinki Vocational College and Adult Institute), Laurea
+            University of Applied Sciences and Metropolia University of Applied
+            Sciences. The project is partially funded by the EU. <br /><br />
+          </p>
+        </div>
+        <Image
+          src="/img/register/walking-man.jpg"
+          alt="walking man"
+          class="hidden md:block bg-cover w-full h-full"
+          width={1000}
+          height={1000}
+        />
+      </div>
+    </section>
+
+    <section>
+      <h3 class="my-16">
+        The CAREERDRIVER+ project focuses on four points of emphasis
+      </h3>
+      <!-- md:w-1/2 -->
+      <div id="diagram-focus">
+        <Image
+          src="/img/uraohjain+/diagram-en.png"
+          alt="diagram"
+          width={1000}
+          height={1000}
+        />
+        <p class="p-4 my-14 pink-bg">
+          CAREERDRIVER+ launched on 1 March 2023 and will continue until 28
+          February 2025. The service will be developed throughout the entire
+          project, and a model of the service developed and its effectiveness
+          will be published at the end of the project period.
         </p>
       </div>
-      <img
-        src='/img/register/walking-man.jpg'
-        alt='walking man'
-        class='hidden md:block bg-cover w-full h-full'
-      />
-    </div>
-  </section>
-
-  <section>
-    <h3 class='my-16'>{t('project.graphicTitle')}</h3>
-    <!-- md:w-1/2 -->
-    <div id='diagram-focus'>
-      <img src='/img/uraohjain+/diagram.png' alt='diagram' />
-      <p class='p-4 my-14 pink-bg'>
-        <Trans i18nKey='project.messageBox'>
-          URAOHJAIN+ alkoi 1.3.2023 ja se jatkuu 28.02.2025 asti. <br /> Palvelua kehitetään koko hankkeen
-          ajan, ja hankeajan lopussa julkaistaan malli kehitetystä palvelusta ja sen vaikuttavuudesta.
-        </Trans>
-      </p>
-    </div>
-  </section>
+    </section>
+  </main>
 </BaseLayout>

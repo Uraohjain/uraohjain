@@ -2,15 +2,16 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import NewsCard from "../../../components/NewsCard.astro";
 
-const allNews = await Astro.glob("../../en/news/*.md");
-const pageTitle = "News";
+const allNews = await Astro.glob("../../fi/news/*.md");
+const pageTitle = "Ajankohtaista";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <main class="px-[5.625rem]">
-    <h2 class="text-center mt-10 mb-16">News</h2>
-    <!-- <section class='flex justify-center' aria-label='New Blog News'> -->
-    <section aria-label="New Blog News">
+    <h1 class="text-center pt-10 pb-16 text-[2rem] text-u+burg font-bold">
+      Ajankohtaista
+    </h1>
+    <section aria-label="New Blog News" class="pb-10">
       <ul class="md:grid md:grid-cols-4 md:gap-4">
         {
           allNews.map((news) => (

@@ -1,9 +1,13 @@
 ---
-layout: '../../../layouts/NewsLayout.astro'
+layout: "../../../layouts/NewsLayout.astro"
 title: CAREERDRIVER SERVICE TO LAUNCH ON 1 NOVEMBER 2023
 date: 2023-10-25
 author: Leea Hiltunen
-image: { src: '/img/news/news-card.jpg', alt: 'Two women sitting on sofas and working' }
+image:
+  {
+    src: "/img/news/news-card.jpg",
+    alt: "Two women sitting on sofas and working",
+  }
 description: Career Guidance+ provides a wide range of services for anyone who wants help in planning their education or career path.
 draft: false
 category: Reference Docs

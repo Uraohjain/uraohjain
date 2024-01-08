@@ -1,20 +1,103 @@
 ---
-import Navbar from '../components/Navbar.astro';
-import PartnersLogos from '../components/PartnersLogos.astro';
+import "../styles/index.scss";
+import { LanguageSelect } from "./languageSelect.tsx";
+import { Image } from "astro:assets";
+import PartnersLogos from "../components/PartnersLogos.astro";
+import { NAVBAR, NAVBAR_HEADER_MAP, type KnownLanguageCode } from "../config";
+import { getLanguageFromURL } from "../languages";
+
+export interface Props {
+  isNotFound?: boolean;
+}
+
+const { pathname } = Astro.url;
+
+const isLanding = pathname === "/" || !!Astro.props.isNotFound;
+const hasTrailing = pathname.endsWith("/");
+const currentPage = pathname.slice(0, hasTrailing ? -1 : pathname.length);
+const langCode = getLanguageFromURL(pathname);
+const finnishNavbar = NAVBAR["fi"];
+const nativeNavbar = NAVBAR[langCode];
+let navbar: Record<
+  string,
+  { text: string; link: string; isTranslated?: boolean }[]
+> = finnishNavbar;
+if (langCode !== "fi") {
+  navbar = Object.fromEntries(
+    Object.entries(finnishNavbar).map(([header, items]) => {
+      // Set header to translated one if it exists
+      const innerHeader = NAVBAR_HEADER_MAP[langCode];
+      const nativeHeader =
+        innerHeader[header as keyof typeof innerHeader] ?? header;
+
+      const nativeItems = items.map((item) => {
+        const match = Object.values(nativeNavbar)
+          .flat()
+          .find(
+            ({ link: nativeLink }) =>
+              // trailing slash + language code
+              nativeLink.slice(langCode.length + 1) === item.link.slice(3),
+          );
+        return {
+          text: match?.text ?? item.text,
+          link: match?.link ?? item.link,
+          isTranslated: !!match,
+        };
+      });
+
+      return [nativeHeader, nativeItems];
+    }),
+  );
+}
 ---
 
-<div>
-  <Navbar />
-  <div
-    id='header'
-    class='w-full bg-cover bg-center'
-    style='background-image: url(/img/frontpage/header.jpg);'
-  >
-    <div id='header-logos'>
-      <div class='px-4 py-8 md:py-12'>
-        <img src='/img/frontpage/logo.svg' alt='' />
-      </div>
-      <PartnersLogos />
-    </div>
+<header class="flex flex-1 justify-center items-center px-4 bg-u+green gap-8">
+  {
+    Object.entries(navbar).map(([header, children]) => (
+      <>
+        <h1>{header}</h1>
+        <nav class="hidden md:flex items-center justify-center">
+          <ul class="flex">
+            {children.map((child) => {
+              const url = Astro.site?.pathname + child.link;
+              const isActive = currentPage === child.link;
+              return (
+                <li>
+                  <a
+                    href={url}
+                    aria-current={isActive ? "page" : false}
+                    class:list={[
+                      "text-lg block p-4 text-white transition-colors hover:bg-u+green-darker",
+                      isActive ? "bg-u+green-darker font-medium" : "bg-u+green",
+                    ]}
+                  >
+                    <span>{child.text}</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </>
+    ))
+  }
+  <LanguageSelect language={langCode} client:load />
+</header>
+
+<div
+  id="header"
+  class="w-full bg-cover bg-center"
+  style="background-image: url(/img/frontpage/header.jpg);"
+>
+  <div id="header-logos">
+    <figure class="px-4 py-8 md:py-12">
+      <Image
+        src="/img/frontpage/logo.svg"
+        alt="uraohjain logo"
+        width={200}
+        height={200}
+      />
+    </figure>
+    <PartnersLogos />
   </div>
 </div>
