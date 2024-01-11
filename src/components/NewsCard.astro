@@ -8,13 +8,11 @@ const { title, date, author, image, description } = frontmatter;
 <li>
   <a href={url} aria-hidden="true">
     <figure class={showImage}>
-      <!-- Temporary code to display only one news card. Use Image compon}}ent above to display more than one news -->
       <Image src={image.src} alt={image.alt} width={500} height={500} />
     </figure>
-    <Tag class="uppercase text-xl">
+    <Tag class="text-xl uppercase">
       {title}
     </Tag>
-
     <p class="">{description}...</p>
   </a>
 </li>

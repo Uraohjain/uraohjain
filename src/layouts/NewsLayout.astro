@@ -7,7 +7,7 @@ const { frontmatter } = Astro.props;
 const { title, description, date, image } = frontmatter;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout pageTitle={title}>
   <main class="px-[5.625rem]">
     <NewsHeader
       title={title}
@@ -19,7 +19,7 @@ const { title, description, date, image } = frontmatter;
       <main class="text-xl">
         <slot />
       </main>
-      <ul class="flex flex-col md:flex-row md:w-3/5 gap-4 mt-20">
+      <ul class="mt-20 flex flex-col gap-4 md:w-3/5 md:flex-row">
         {
           allNews.map((news) => (
             <NewsCard

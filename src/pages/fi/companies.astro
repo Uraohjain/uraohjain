@@ -6,14 +6,18 @@ const pageTitle = "Yrityksille";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <main class="px-[5.625rem]">
+  <main class="px-[5.625rem] pb-16">
     <section>
-      <h2 class="text-center mt-10 mb-16">Yrityksille</h2>
+      <h2 class="pb-16 pt-10 text-center text-[2rem] font-bold text-u+burg">
+        {pageTitle}
+      </h2>
 
-      <div class="md:grid md:grid-cols-2">
-        <div class="p-8 md:p-18 pink-bg">
-          <h2>Rekrytoitko ICT-, ohjelmisto- tai media-alalle työntekijöitä?</h2>
-          <p>
+      <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="md:p-18 bg-u+pinky p-8">
+          <h2 class="pb-7 pt-6 text-[2rem] font-bold">
+            Rekrytoitko ICT-, ohjelmisto- tai media-alalle työntekijöitä?
+          </h2>
+          <p class="text-xl font-light">
             Uuden työllistymistä edistävän toimintamallin kehittänyt Uraohjain+
             -kehityshanke etsii yhteistyökumppaneita. Etsimämme
             yhteistyökumppanit ovat valmiita vaikuttamaan työvoimatarjonnan
@@ -30,19 +34,24 @@ const pageTitle = "Yrityksille";
             suorittaneille, jotka hakevat töitä ICT-, ohjelmistokehitys- tai media-alalta.
             Uraohjain+-hanketta toteuttavat Helsingin kaupunki (Stadin AO), Laurea-ammattikorkeakoulu
             ja Metropolia Ammattikorkeakoulu. Hanke on Euroopan unionin osarahoittama.
-            <br />
+            <br /><br />
           </p>
-          <h4>
-            Kiinnostuitko? <br /> Ota yhteyttä: jaakko.hyytia@hel.fi
+          <h4 class="text-xl font-black">
+            Kiinnostuitko? <br /> Ota yhteyttä: <a
+              href="mailto:jaakko.hyytia@hel.fi"
+              class="hover:underline">jaakko.hyytia@hel.fi</a
+            >
           </h4>
         </div>
-        <Image
-          src="/img/companies/walking-man-original.jpg"
-          alt="Walking man"
-          class="hidden md:block bg-cover w-full h-full"
-          width={1000}
-          height={1000}
-        />
+        <figure class="hidden md:block">
+          <Image
+            src="/img/companies/walking-man-original.jpg"
+            alt="Walking man"
+            class="h-full w-full bg-cover"
+            width={1000}
+            height={1000}
+          />
+        </figure>
       </div>
     </section>
   </main>

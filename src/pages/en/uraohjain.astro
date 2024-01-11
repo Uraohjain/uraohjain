@@ -6,14 +6,18 @@ const pageTitle = "CAREERDRIVER+ project";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <main class="px-[5.625rem]">
+  <main class="px-[5.625rem] pb-16">
     <section>
-      <h2 class="text-center mt-10 mb-16">CAREERDRIVER+ project</h2>
+      <h2 class="pb-16 pt-10 text-center text-[2rem] font-bold text-u+burg">
+        CAREERDRIVER+ project
+      </h2>
 
-      <div class="md:grid md:grid-cols-2">
-        <div class="p-8 md:p-18 pink-bg">
-          <h2>CAREERDRIVER+ builds a new model for sustainable employment</h2>
-          <p>
+      <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="md:p-18 bg-u+pinky p-8">
+          <h2 class="pb-7 pt-6 text-[2rem] font-bold">
+            CAREERDRIVER+ builds a new model for sustainable employment
+          </h2>
+          <p class="text-xl font-light">
             The CareerDriver+ development project has developed a new operating
             model to promote employment and is seeking businesses to cooperate
             with. The partners we seek are ready to contribute to the
@@ -39,29 +43,32 @@ const pageTitle = "CAREERDRIVER+ project";
             Sciences. The project is partially funded by the EU. <br /><br />
           </p>
         </div>
-        <Image
-          src="/img/register/walking-man.jpg"
-          alt="walking man"
-          class="hidden md:block bg-cover w-full h-full"
-          width={1000}
-          height={1000}
-        />
+        <figure class="hidden md:block">
+          <Image
+            src="/img/register/walking-man.jpg"
+            alt="walking man"
+            class="h-full w-full bg-cover"
+            width={1000}
+            height={1000}
+          />
+        </figure>
       </div>
     </section>
 
     <section>
-      <h3 class="my-16">
+      <h3 class="py-16 text-3xl font-bold">
         The CAREERDRIVER+ project focuses on four points of emphasis
       </h3>
-      <!-- md:w-1/2 -->
-      <div id="diagram-focus">
-        <Image
-          src="/img/uraohjain+/diagram-en.png"
-          alt="diagram"
-          width={1000}
-          height={1000}
-        />
-        <p class="p-4 my-14 pink-bg">
+      <div class="flex max-w-[800px] flex-col gap-14">
+        <figure>
+          <Image
+            src="/img/uraohjain+/diagram-en.png"
+            alt="diagram"
+            width={1000}
+            height={1000}
+          />
+        </figure>
+        <p class="bg-u+pinky p-4 text-xl font-light">
           CAREERDRIVER+ launched on 1 March 2023 and will continue until 28
           February 2025. The service will be developed throughout the entire
           project, and a model of the service developed and its effectiveness

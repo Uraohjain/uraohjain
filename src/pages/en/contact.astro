@@ -5,25 +5,23 @@ const pageTitle = "Contact Us";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <main class="px-[5.625rem]">
-    <div class="flex flex-col justify-center items-center">
-      <h1 class="text-[2rem] font-bold">
+  <main class="px-[5.625rem] pb-16">
+    <div class="flex flex-col items-center justify-center">
+      <h1 class="pb-16 pt-10 text-center text-[2rem] font-bold text-u+burg">
         {pageTitle}
       </h1>
-      <ul class="flex flex-col md:flex-row gap-10">
-        <li class="bg-u+sunny px-14 py-11 flex flex-col text-xl font-light">
-          <h2 class="text-2xl font-bold">
-            Hankkeeseen liittyvät yhteydenotot:
-          </h2>
-          <p class="font-extrabold p-0">Jaakko Hyytiä</p>
-          <p class="p-0">Projektipäällikkö</p>
+      <ul class="flex flex-col gap-10 md:flex-row">
+        <li class="flex flex-col bg-u+sunny px-14 py-11 text-xl font-light">
+          <h2 class="text-2xl font-bold">Contacts related to the project</h2>
+          <p class="p-0 font-extrabold">Jaakko Hyytiä</p>
+          <p class="p-0">Project Manager</p>
           <a href="tel:012 3456 789">09 310 25104</a>
           <a href="mailto:jaakko.hyytia@hel.fi">jaakko.hyytia@hel.fi</a>
         </li>
-        <li class="bg-u+sunny px-14 py-11 flex flex-col text-xl font-light">
-          <h2 class="text-2xl font-bold">Palveluun liittyvät yhteydenotot:</h2>
-          <p class="font-extrabold p-0">Leea Hiltunen</p>
-          <p class="p-0">Projektikoordinaattori</p>
+        <li class="flex flex-col bg-u+sunny px-14 py-11 text-xl font-light">
+          <h2 class="text-2xl font-bold">Contacts related to the service</h2>
+          <p class="p-0 font-extrabold">Leea Hiltunen</p>
+          <p class="p-0">Project Coordinator</p>
           <a href="tel:012 3456 789">040 664 3020</a>
           <a href="mailto:leea.hiltunen@hel.fi">leea.hiltunen@hel.fi</a>
         </li>

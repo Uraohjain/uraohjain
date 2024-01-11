@@ -1,26 +1,31 @@
 ---
 import "@fontsource-variable/nunito";
 import "@fontsource-variable/jost";
-import "../styles/index.scss";
+import "../styles/globals.css";
 import HeadCommon from "../components/headCommon.astro";
 import HeadSEO from "../components/headSeo.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
-const { pageTitle } = Astro.props;
+export type Props = {
+  pageTitle: string;
+  isNotFound?: boolean;
+};
 
-const { pathname } = Astro.url;
+const { pageTitle, isNotFound } = Astro.props;
+
+const currentPage = Astro.url.pathname;
 ---
 
+<!doctype html>
 <html lang="en">
   <head>
+    <HeadSEO />
     <HeadCommon />
     <title>{pageTitle}</title>
   </head>
-  <body>
-    <header>
-      <Header />
-    </header>
+  <body class="relative flex h-screen flex-col text-u+burg">
+    <Header currentPage={currentPage} isNotFound={isNotFound || false} />
     <slot />
     <Footer />
   </body>

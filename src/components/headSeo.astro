@@ -3,7 +3,14 @@ import { OPEN_GRAPH, SITE } from "../config";
 import { SITE_URL } from "../utils/siteUrl";
 
 export type Props = {
-  frontmatter?: Frontmatter;
+  frontmatter?: {
+    title?: string;
+    description?: string;
+    image?: {
+      src?: string;
+      alt?: string;
+    };
+  };
   type?: string;
 };
 

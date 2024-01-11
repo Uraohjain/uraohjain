@@ -3,19 +3,19 @@ import "../styles/index.scss";
 import { LanguageSelect } from "./languageSelect.tsx";
 import { Image } from "astro:assets";
 import PartnersLogos from "../components/PartnersLogos.astro";
-import { NAVBAR, NAVBAR_HEADER_MAP, type KnownLanguageCode } from "../config";
+import { NAVBAR, NAVBAR_HEADER_MAP } from "../config";
 import { getLanguageFromURL } from "../languages";
 
-export interface Props {
+export type Props = {
+  currentPage: string;
   isNotFound?: boolean;
-}
+};
 
-const { pathname } = Astro.url;
+const { currentPage, isNotFound } = Astro.props;
 
-const isLanding = pathname === "/" || !!Astro.props.isNotFound;
-const hasTrailing = pathname.endsWith("/");
-const currentPage = pathname.slice(0, hasTrailing ? -1 : pathname.length);
-const langCode = getLanguageFromURL(pathname);
+const isLanding = currentPage === "/" || !!isNotFound;
+const currentPageMatch = currentPage.slice(1, currentPage.length);
+const langCode = getLanguageFromURL(currentPage);
 const finnishNavbar = NAVBAR["fi"];
 const nativeNavbar = NAVBAR[langCode];
 let navbar: Record<
@@ -51,23 +51,25 @@ if (langCode !== "fi") {
 }
 ---
 
-<header class="flex flex-1 justify-center items-center px-4 bg-u+green gap-8">
+<header
+  class="flex flex-1 items-center justify-between gap-8 bg-u+green px-[5.625rem]"
+>
   {
     Object.entries(navbar).map(([header, children]) => (
       <>
-        <h1>{header}</h1>
-        <nav class="hidden md:flex items-center justify-center">
+        <h1 class="font-bold text-white">{header}</h1>
+        <nav class="hidden items-center justify-center md:flex">
           <ul class="flex">
             {children.map((child) => {
               const url = Astro.site?.pathname + child.link;
-              const isActive = currentPage === child.link;
+              const isActive = currentPageMatch === child.link;
               return (
                 <li>
                   <a
                     href={url}
                     aria-current={isActive ? "page" : false}
                     class:list={[
-                      "text-lg block p-4 text-white transition-colors hover:bg-u+green-darker",
+                      "block p-4 text-lg text-white transition-colors hover:bg-u+green-darker",
                       isActive ? "bg-u+green-darker font-medium" : "bg-u+green",
                     ]}
                   >
@@ -83,21 +85,26 @@ if (langCode !== "fi") {
   }
   <LanguageSelect language={langCode} client:load />
 </header>
-
-<div
-  id="header"
-  class="w-full bg-cover bg-center"
-  style="background-image: url(/img/frontpage/header.jpg);"
->
-  <div id="header-logos">
-    <figure class="px-4 py-8 md:py-12">
-      <Image
-        src="/img/frontpage/logo.svg"
-        alt="uraohjain logo"
-        width={200}
-        height={200}
-      />
-    </figure>
-    <PartnersLogos />
-  </div>
-</div>
+<>
+  {
+    isNotFound === false ? (
+      <div
+        id="header"
+        class="w-full bg-cover bg-center"
+        style="background-image: url(/img/frontpage/header.jpg);"
+      >
+        <div class="px-[5.625rem]">
+          <figure class="py-8 md:py-12">
+            <Image
+              src="/img/frontpage/logo.svg"
+              alt="uraohjain logo"
+              width={200}
+              height={200}
+            />
+          </figure>
+          <PartnersLogos />
+        </div>
+      </div>
+    ) : null
+  }
+</>

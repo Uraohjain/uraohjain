@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const pageTitle = "Page Not Found 404";
+---
+
+<BaseLayout pageTitle={pageTitle} isNotFound={true}>
+  <main class="flex h-full px-[5.625rem]">
+    <section
+      class="flex grow flex-col items-center justify-center px-0 text-xl font-light md:px-20 md:text-center"
+    >
+      <h1 class="pb-10 text-4xl font-bold">404 No Found</h1>
+      <p>Näyttäisi siltä, että olet eksynyt. Harmi homma!</p>
+      <p>Palaa takaisin turvalliselle reitillesi ja kokeile uudestaan.</p>
+      <p>Jos tämä vaikuttaa virheeltä, ilmoita siitä ylläpidollemme. Kiitos!</p>
+      <a href="/" class="underline hover:opacity-75">Takaisin Etusivulle</a>
+    </section>
+  </main>
+</BaseLayout>
