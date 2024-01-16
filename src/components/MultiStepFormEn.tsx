@@ -189,7 +189,7 @@ export function MultiStepForm() {
               If you need guidance for your studies, you can turn to Laurea
               University of Applied Sciences’ Open UAS{" "}
               <a
-                href="https://www.laurea.fi/tyoelamapalvelut/palveluteot/avoin-amk-ohjauspalvelut/"
+                href="https://www.laurea.fi/en/degree_programmes/open-university-of-applied-sciences/open-uas-contact-information/"
                 className="underline hover:text-u+burg-darker"
               >
                 guidance services

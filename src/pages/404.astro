@@ -1,7 +1,13 @@
 ---
+import { getLanguageFromURL } from "@/languages";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const pageTitle = "Page Not Found 404";
+const currentPage = Astro.url.pathname;
+
+const langCode = getLanguageFromURL(currentPage);
+
+const pageTitle =
+  langCode === "en" ? "Page Not Found 404" : "Sivua ei löytynyt 404";
 ---
 
 <BaseLayout pageTitle={pageTitle} isNotFound={true}>
@@ -9,11 +15,35 @@ const pageTitle = "Page Not Found 404";
     <section
       class="flex grow flex-col items-center justify-center px-0 text-xl font-light md:px-20 md:text-center"
     >
-      <h1 class="pb-10 text-4xl font-bold">404 No Found</h1>
-      <p>Näyttäisi siltä, että olet eksynyt. Harmi homma!</p>
-      <p>Palaa takaisin turvalliselle reitillesi ja kokeile uudestaan.</p>
-      <p>Jos tämä vaikuttaa virheeltä, ilmoita siitä ylläpidollemme. Kiitos!</p>
-      <a href="/" class="underline hover:opacity-75">Takaisin Etusivulle</a>
+      <h1 class="pb-10 text-4xl font-bold">
+        {pageTitle}
+      </h1>
+      <p>
+        {
+          langCode === "en"
+            ? "It looks like you've wandered off the beaten track."
+            : "Näyttäisi siltä, että olet eksynyt. Harmi homma!"
+        }
+      </p>
+      <p>
+        {
+          langCode === "en"
+            ? "Oh dear! Head back to the safe route and give it another shot."
+            : "Palaa takaisin turvalliselle reitillesi ja kokeile uudestaan."
+        }
+      </p>
+      <p>
+        {
+          langCode === "en"
+            ? " If this seems like an error, let our team know. Thank you!"
+            : "Jos tämä vaikuttaa virheeltä, ilmoita siitä ylläpidollemme. Kiitos!"
+        }
+      </p>
+      <a href="/" class="underline hover:opacity-75"
+        >{
+          langCode === "en" ? "Return To The Homepage" : "Takaisin Etusivulle"
+        }</a
+      >
     </section>
   </main>
 </BaseLayout>

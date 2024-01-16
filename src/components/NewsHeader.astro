@@ -6,7 +6,7 @@ const { title, description, date, image } = Astro.props;
 
 <header>
   <h1 class="pb-16 pt-10 text-center text-[2rem] font-bold text-u+burg">
-    Ajankohtaista
+    {title}
   </h1>
   <Image
     class="float-right md:pl-10"
@@ -15,5 +15,4 @@ const { title, description, date, image } = Astro.props;
     width={400}
     height={225}
   />
-  <h2>{title}</h2>
 </header>

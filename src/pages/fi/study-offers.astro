@@ -4,7 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { cn } from "../../utils/util";
 import { Button } from "../../components/ui/button";
 
-const currentPath = Astro.url.search;
+const currentPath = Astro.url;
 const pageTitle = "Opintotarjonta";
 
 const courses = [
@@ -54,7 +54,7 @@ const courses = [
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <main class="px-[5.625rem] pb-16">
+  <main class="px-0 pb-16 md:px-[5.625rem]">
     <div
       class="flex grow flex-col items-center justify-center gap-4"
       id="study-offers"
@@ -155,14 +155,8 @@ const courses = [
           <p>Media</p>
         </a>
       </div>
-      <Button>Hello</Button>
-      <Button variant="destructive">Hello</Button>
-      <Button variant="ghost">Hello</Button>
-      <Button variant="link">Hello</Button>
-      <Button variant="outline">Hello</Button>
-      <Button disabled>Hello</Button>
 
-      <ul class="grid grid-flow-dense grid-cols-3 gap-2">
+      <ul class="grid grid-flow-dense grid-cols-1 gap-2 md:grid-cols-3">
         {
           courses.map((course) => (
             <li
@@ -172,7 +166,7 @@ const courses = [
               )}
             >
               <CourseDialog
-                currentPath={currentPath}
+                currentPath={currentPath.href}
                 course={course}
                 client:idle
               >
@@ -260,9 +254,9 @@ const courses = [
                     </svg>
                   )}
                 </div>
+                <p class="m-0 p-0 font-bold">{course.name}</p>
+                <p class="m-0 p-0">{course.title}</p>
               </CourseDialog>
-              <p class="m-0 p-0 font-bold">{course.name}</p>
-              <p class="m-0 p-0">{course.title}</p>
             </li>
           ))
         }

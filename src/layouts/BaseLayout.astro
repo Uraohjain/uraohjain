@@ -6,6 +6,8 @@ import HeadCommon from "../components/headCommon.astro";
 import HeadSEO from "../components/headSeo.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import PartnersLogos from "@/components/PartnersLogos.astro";
+import { Image } from "astro:assets";
 
 export type Props = {
   pageTitle: string;
@@ -25,7 +27,28 @@ const currentPage = Astro.url.pathname;
     <title>{pageTitle}</title>
   </head>
   <body class="relative flex h-screen flex-col text-u+burg">
-    <Header currentPage={currentPage} isNotFound={isNotFound || false} />
+    <Header currentPage={currentPage} />
+    {
+      (isNotFound || false) === false ? (
+        <div
+          id="header"
+          class="w-full bg-cover bg-center"
+          style="background-image: url(/img/frontpage/header.jpg);"
+        >
+          <div class="px-[5.625rem]">
+            <figure class="py-8 md:py-12">
+              <Image
+                src="/img/frontpage/logo.svg"
+                alt="uraohjain logo"
+                width={200}
+                height={200}
+              />
+            </figure>
+            <PartnersLogos />
+          </div>
+        </div>
+      ) : null
+    }
     <slot />
     <Footer />
   </body>
