@@ -7,7 +7,7 @@ export const SITE = {
 export const OPEN_GRAPH = {
   image: {
     src: "images/og-image.png",
-    alt: "Uraohjain palvelu.",
+    alt: "Kirkasta urasuunnitelmasi ja vahvista osaamistasi",
   },
 };
 
@@ -64,5 +64,5 @@ export const NAVBAR_HEADER_MAP: Record<
   Exclude<KnownLanguageCode, "fi">,
   Record<OuterHeaders, string>
 > = {
-  en: { Uraohjain: "CareerDriver+" },
+  en: { Uraohjain: "CareerDriver" },
 };

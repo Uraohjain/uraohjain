@@ -53,7 +53,7 @@ export function CourseDialog({
       }}
     >
       <DialogTrigger asChild>
-        <div>{children}</div>
+        <div className="flex flex-col items-center">{children}</div>
       </DialogTrigger>
       <DialogContent
         className={cn(
