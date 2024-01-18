@@ -2,7 +2,7 @@ import { useState, useEffect, useLayoutEffect } from "react";
 // import SignupForm from './SignupForm';
 import { MultiStepper } from "./MultiStep";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { Button } from "./ui/button";
 
 export function MultiStepForm() {
   const [answers, setAnswers] = useState({

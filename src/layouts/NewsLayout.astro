@@ -1,20 +1,26 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import NewsHeader from "../components/NewsHeader.astro";
 import NewsCard from "../components/NewsCard.astro";
+import { Image } from "astro:assets";
 const allNews = await Astro.glob("../pages/fi/news/*.md");
 const { frontmatter } = Astro.props;
-const { title, description, date, image } = frontmatter;
+const { title, image } = frontmatter;
 ---
 
 <BaseLayout pageTitle={title}>
   <main class="px-[5.625rem] pb-16">
-    <NewsHeader
-      title={title}
-      description={description}
-      date={date}
-      image={image}
-    />
+    <header>
+      <h1 class="pb-16 pt-10 text-center text-[2rem] font-bold text-u+burg">
+        {title}
+      </h1>
+      <Image
+        class="float-right md:pl-10"
+        src={image.src}
+        alt={image.alt}
+        width={400}
+        height={225}
+      />
+    </header>
     <article class="flex flex-col">
       <main class="text-xl">
         <slot />

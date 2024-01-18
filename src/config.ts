@@ -1,7 +1,7 @@
 export const SITE = {
   title: "Uraohjain",
-  description: "Uraohjaus palvelu",
-  defaultLanguage: "fi_FI",
+  description: "Kirkasta urasuunnitelmasi ja vahvista osaamistasi",
+  defaultLanguage: "fi",
 };
 
 export const OPEN_GRAPH = {

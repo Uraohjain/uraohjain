@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "./ui/button";
 import {
   Dialog,
   DialogContent,
@@ -6,8 +6,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { cn } from "@/utils/util";
+} from "./ui/dialog";
+import { cn } from "../lib/utils";
 import React, { useEffect, useState } from "react";
 
 export function CourseDialog({

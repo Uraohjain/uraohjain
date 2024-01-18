@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 const { frontmatter, url, tagType, showImage = "block" } = Astro.props;
 const Tag = tagType || "h2";
-const { title, date, author, image, description } = frontmatter;
+const { title, image, description } = frontmatter;
 ---
 
 <li>

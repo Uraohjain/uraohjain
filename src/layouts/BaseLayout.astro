@@ -6,7 +6,7 @@ import HeadCommon from "../components/headCommon.astro";
 import HeadSEO from "../components/headSeo.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import PartnersLogos from "@/components/PartnersLogos.astro";
+import PartnersLogos from "../components/PartnersLogos.astro";
 import { Image } from "astro:assets";
 
 export type Props = {
@@ -14,16 +14,16 @@ export type Props = {
   isNotFound?: boolean;
 };
 
-const { pageTitle, isNotFound } = Astro.props;
-
 const currentPage = Astro.url.pathname;
+
+const { pageTitle, isNotFound } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="fi">
   <head>
     <HeadSEO />
-    <HeadCommon />
+    <HeadCommon type="website" />
     <title>{pageTitle}</title>
   </head>
   <body class="relative flex h-screen flex-col text-u+burg">
