@@ -136,13 +136,12 @@ export function TermsOfService() {
 }
 
 export function MultiStepper() {
-  const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
-    useMultistepForm([
-      <TermsOfService />,
-      <Survey />,
-      <Booking />,
-      <FinalStep />,
-    ]);
+  const { steps, currentStepIndex, step, isLastStep, next } = useMultistepForm([
+    <TermsOfService />,
+    <Survey />,
+    <Booking />,
+    <FinalStep />,
+  ]);
 
   return (
     <div>

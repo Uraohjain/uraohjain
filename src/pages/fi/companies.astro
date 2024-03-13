@@ -1,12 +1,12 @@
 ---
 import { Image } from "astro:assets";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "../../layouts/Base.astro";
 
 const pageTitle = "Yrityksille";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <main class="px-[5.625rem] pb-16">
+  <main class="px-5 pb-16 md:px-[5.625rem]">
     <section>
       <h2 class="pb-16 pt-10 text-center text-[2rem] font-bold text-u+burg">
         {pageTitle}
@@ -48,6 +48,7 @@ const pageTitle = "Yrityksille";
             src="/img/companies/walking-man-original.jpg"
             alt="Walking man"
             class="h-full w-full bg-cover"
+            loading="eager"
             width={1000}
             height={1000}
           />

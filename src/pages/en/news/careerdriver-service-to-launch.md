@@ -1,5 +1,5 @@
 ---
-layout: "../../../layouts/NewsLayout.astro"
+layout: "../../../layouts/News.astro"
 title: CAREERDRIVER SERVICE TO LAUNCH ON 1 NOVEMBER 2023
 date: 2023-10-25
 author: Leea Hiltunen

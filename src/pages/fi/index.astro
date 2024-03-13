@@ -1,19 +1,26 @@
 ---
 import { Image } from "astro:assets";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "../../layouts/Base.astro";
 import { Separator } from "../../components/ui/seperator";
 
 const pageTitle = "Etusivu";
 ---
 
-<BaseLayout pageTitle={pageTitle} isNotFound={false}>
-  <main class="px-[5.625rem] pb-16">
-    <section class="px-0 md:px-20 md:text-center">
-      <h1 class="pb-16 pt-10 text-center text-[2.5rem] font-light text-u+burg">
-        <span class="tracking-[1rem]">URAOHJAIN</span>
-        <br /> ICT-, ohjelmistokehitys- ja media-alan työnhakijoille
-      </h1>
-      <p class="mb-4 leading-9 md:mb-14 md:text-2xl">
+<BaseLayout pageTitle={pageTitle}>
+  <main class="px-5 pb-16 md:px-[5.625rem]">
+    <section class="px-0 md:px-20">
+      <div class="pb-16 pt-10 text-center">
+        <h1
+          class="pb-4 text-center text-sm font-medium leading-tight tracking-[1rem] text-u+burg md:text-[2.5rem]"
+        >
+          URAOHJAIN
+        </h1>
+        <span
+          class="text-center text-sm font-light leading-tight text-u+burg md:text-[2.5rem]"
+          >ICT-, ohjelmistokehitys- ja media-alan työnhakijoille</span
+        >
+      </div>
+      <p class="mb-4 text-balance text-center leading-9 md:mb-14 md:text-2xl">
         Tule täydentämään osaamistasi työelämän nopeita muutostarpeita
         vastaavaksi, suunnittelemaan uraasi ja oivaltamaan lisää oman osaamisesi
         markkinoinnista. Pääset keskustelemaan oman arkesi hyvinvoinnista
@@ -24,7 +31,9 @@ const pageTitle = "Etusivu";
     <!-- Benefits section -->
     <section class="flex flex-col items-center p-4 md:px-16 md:py-8">
       <h3 class="pb-8 text-[2rem] font-bold">Uraohjain-palvelussa saat:</h3>
-      <ul class="flex h-full items-start gap-4 text-xl md:space-x-5">
+      <ul
+        class="flex h-full flex-col items-start gap-4 text-xl md:flex-row md:space-x-5"
+      >
         <li class="flex flex-1 flex-col items-center gap-4 text-center">
           <figure class="rounded-full bg-u+pinky p-4">
             <svg
@@ -108,14 +117,14 @@ const pageTitle = "Etusivu";
             </svg>
           </figure>
           <h3 class="font-bold">Urasuunnittelu</h3>
-          <p class="font-light">
+          <p class="text-balance font-light">
             Tunnista ja sanoita osaamistasi, suunnittele uraasi ja markkinoi
             osaamistasi.
           </p>
         </li>
         <Separator
           orientation="vertical"
-          className="my-auto h-56 max-h-56 bg-u+burg"
+          className="my-auto hidden h-56 max-h-56 bg-u+burg md:block"
         />
         <li class="flex flex-1 flex-col items-center gap-4 text-center">
           <figure class="rounded-full bg-u+pinky p-4">
@@ -174,7 +183,7 @@ const pageTitle = "Etusivu";
             </svg>
           </figure>
           <h3 class="font-bold">Osaamisen kehittäminen</h3>
-          <p class="font-light">
+          <p class="text-balance font-light">
             Kehitä osaamistasi työelämän tarpeita vastaavaksi. Valitse
             uratavoitteesi mukainen räätälöity osaamiskokonaisuus 3–6kk
             Uraohjain-jaksolle.
@@ -182,7 +191,7 @@ const pageTitle = "Etusivu";
         </li>
         <Separator
           orientation="vertical"
-          className="my-auto h-56 max-h-56 bg-u+burg"
+          className="my-auto hidden h-56 max-h-56 bg-u+burg md:block"
         />
         <li class="flex flex-1 flex-col items-center gap-4 text-center">
           <figure class="rounded-full bg-u+pinky p-4">
@@ -232,7 +241,7 @@ const pageTitle = "Etusivu";
             </svg>
           </figure>
           <h3 class="font-bold">Hyvinvointikeskustelut</h3>
-          <p class="font-light">
+          <p class="text-balance font-light">
             Keskustele hyvinvoinnistasi arjen ja työllistymisen tukemiseksi.
           </p>
         </li>
@@ -249,8 +258,8 @@ const pageTitle = "Etusivu";
     </section>
     <!-- Profile section -->
     <section class="mb-4 mt-6 justify-around md:mb-16 md:flex">
-      <div class="bg-u+green px-6 py-6 md:basis-3/5 md:px-12 md:py-12">
-        <h3 class="py-4 text-3xl font-bold text-white">
+      <div class="bg-u+green px-6 py-12 md:basis-3/5 md:px-12 md:py-12">
+        <h3 class="pb-4 text-3xl font-bold text-white">
           Kennelle Uraohjain-palvelu on?
         </h3>
         <ul class="ml-6 list-disc text-xl font-light text-white">
@@ -264,7 +273,7 @@ const pageTitle = "Etusivu";
       </div>
       <!-- Take test section -->
       <div
-        class="mt-4 flex items-center justify-center bg-u+sunny md:ml-5 md:mt-0 md:basis-2/5"
+        class="mt-4 flex items-center justify-center bg-u+sunny py-12 md:ml-5 md:mt-0 md:basis-2/5"
       >
         <h2 class="text-[2rem] font-semibold text-u+green underline">
           <a href="/signup">

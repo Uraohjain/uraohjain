@@ -1,16 +1,10 @@
-import { useState, useEffect, useLayoutEffect } from "react";
-// import SignupForm from './SignupForm';
+import { useState, useEffect } from "react";
 import { MultiStepper } from "./MultiStep";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
+import { Image } from "astro:assets";
 
 export function MultiStepForm() {
-  const [answers, setAnswers] = useState({
-    unemployement: "",
-    interest: "",
-    language: "",
-    diploma: "",
-  });
   const [unemployement, setUnemployement] = useState("No");
   const [interest, setInterest] = useState("No");
   const [language, setLanguage] = useState("No");
@@ -53,7 +47,7 @@ export function MultiStepForm() {
   }, [unemployement, interest, language, diploma]);
 
   return (
-    <div className="md:grid md:grid-cols-2" id="pink-box">
+    <div className="md:grid lg:grid-cols-2" id="pink-box">
       <form className="md:p-18 bg-u+pinky p-4">
         {showRadioForm && (
           <motion.div
@@ -217,11 +211,12 @@ export function MultiStepForm() {
           </motion.div>
         )}
       </form>
-      <figure className="hidden md:block">
+      <figure className="hidden lg:block">
         <img
           src="/img/register/walking-man.jpg"
-          alt=""
+          alt="Legs of a person walking"
           className="h-full w-full bg-cover"
+          loading="eager"
           width={1000}
           height={1000}
         />

@@ -1,9 +1,13 @@
 ---
-layout: '../../../layouts/NewsLayout.astro'
+layout: "../../../layouts/News.astro"
 title: Kehitä osaamistasi joustavasti!
 date: 2023-10-25
 author: Leea Hiltunen
-image: { src: '/img/news/news-card.jpg', alt: 'Two women sitting on sofas and working' }
+image:
+  {
+    src: "/img/news/news-card.jpg",
+    alt: "Two women sitting on sofas and working",
+  }
 description: Uraohjaus+ palvelee laajasti kaikkia, jotka haluavat apua koulutus- tai työpolun suunnittelemiseen.
 draft: false
 category: Reference Docs

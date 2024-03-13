@@ -4,10 +4,11 @@ import "@fontsource-variable/jost";
 import "../styles/globals.css";
 import HeadCommon from "../components/headCommon.astro";
 import HeadSEO from "../components/headSeo.astro";
-import Header from "../components/Header.astro";
+import { Header } from "../components/header.tsx";
 import Footer from "../components/Footer.astro";
 import PartnersLogos from "../components/PartnersLogos.astro";
 import { Image } from "astro:assets";
+import { getLanguageFromURL } from "../languages.ts";
 
 export type Props = {
   pageTitle: string;
@@ -15,24 +16,30 @@ export type Props = {
 };
 
 const currentPage = Astro.url.pathname;
+const pathname = Astro.site?.pathname;
 
 const { pageTitle, isNotFound } = Astro.props;
+const lang = getLanguageFromURL(currentPage);
 ---
 
 <!doctype html>
-<html lang="fi">
+<html lang={lang}>
   <head>
     <HeadSEO />
     <HeadCommon type="website" />
     <title>{pageTitle}</title>
   </head>
-  <body class="relative flex h-screen flex-col text-u+burg">
-    <Header currentPage={currentPage} />
+  <body class="relative flex h-screen flex-col font-nunito text-u+burg">
+    <Header
+      currentPage={currentPage || "/"}
+      pathname={pathname || ""}
+      client:only="react"
+    />
     {
       (isNotFound || false) === false ? (
         <div
           id="header"
-          class="w-full bg-cover bg-center"
+          class="w-full bg-cover bg-center py-6"
           style="background-image: url(/img/frontpage/header.jpg);"
         >
           <div class="px-[5.625rem]">
@@ -42,6 +49,8 @@ const { pageTitle, isNotFound } = Astro.props;
                 alt="uraohjain logo"
                 width={200}
                 height={200}
+                loading="eager"
+                class=""
               />
             </figure>
             <PartnersLogos />
@@ -50,6 +59,6 @@ const { pageTitle, isNotFound } = Astro.props;
       ) : null
     }
     <slot />
-    <Footer />
+    <Footer currentPage={currentPage || "/"} />
   </body>
 </html>

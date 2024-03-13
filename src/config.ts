@@ -31,7 +31,20 @@ export type NavbarItemLink = NavbarItem["link"];
 
 export type Navbar = {
   [TCode in KnownLanguageCode]: {
-    [THeader in OuterHeaders]?: NavbarItem<TCode>[];
+    [THeader in "Uraohjain"]?: NavbarItem<TCode>[];
+  };
+};
+
+export interface FooterItem {
+  logo: string;
+  title: string;
+  description: string;
+  eu: string;
+}
+
+export type Footer = {
+  [TCode in KnownLanguageCode]: {
+    [THeader in "footer"]?: FooterItem;
   };
 };
 
@@ -41,7 +54,7 @@ export const NAVBAR: Navbar = {
       { text: "Home", link: "en/" },
       { text: "News", link: "en/news" },
       { text: "Signup", link: "en/signup" },
-      { text: "Studing Offering", link: "en/study-offers" },
+      // { text: "Study Offering", link: "en/study-offers" },
       { text: "For Businesses", link: "en/companies" },
       { text: "Project", link: "en/uraohjain" },
       { text: "Contact", link: "en/contact" },
@@ -51,7 +64,7 @@ export const NAVBAR: Navbar = {
     Uraohjain: [
       { text: "Etusivu", link: "fi/" },
       { text: "Ajankohtaista", link: "fi/news" },
-      { text: "Ilmoittautuminen", link: "fi/signup" },
+      // { text: "Ilmoittautuminen", link: "fi/signup" },
       { text: "Opintotarjonta", link: "fi/study-offers" },
       { text: "Yrityksille", link: "fi/companies" },
       { text: "Hanke", link: "fi/uraohjain" },
@@ -65,4 +78,25 @@ export const NAVBAR_HEADER_MAP: Record<
   Record<OuterHeaders, string>
 > = {
   en: { Uraohjain: "CareerDriver" },
+};
+
+export const FOOTER: Footer = {
+  en: {
+    footer: {
+      logo: "/img/logo.svg",
+      title: "Brighten up your career plan and strengthen your skills!",
+      description:
+        "Uraohjain+ is a joint development project of StadinAO, Laurea University of Applied Sciences and Metropolia University of Applied Sciences. The project is co-funded by the EU. The development work is carried out in close cooperation with Helsinki Employment Services and Virittämö.",
+      eu: "/img/frontpage/europe-en.svg",
+    },
+  },
+  fi: {
+    footer: {
+      logo: "/img/logo.svg",
+      title: "Kirkasta urasuunnitelmasi ja vahvista osaamistasi!",
+      description:
+        "Uraohjain+ on StadinAO:n, Laurea-ammattikorkeakoulun ja Metropolia Ammattikorkeakoulun yhteiskehittämishanke. Hanke on EU:n osarahoittama. Kehitystyötä tehdään tiiviissä yhteistyössä Helsingin työllisyyspalveluiden ja Virittämön kanssa.",
+      eu: "/img/frontpage/europe.svg",
+    },
+  },
 };

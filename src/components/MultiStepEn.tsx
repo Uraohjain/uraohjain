@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { type ReactElement, useState, useCallback } from "react";
 
+//TODO: remove this file and use MultiStep.tsx instead and add translations to it
 function useMultistepForm(steps: ReactElement[]) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
@@ -137,13 +138,12 @@ export function TermsOfService() {
 }
 
 export function MultiStep() {
-  const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
-    useMultistepForm([
-      <TermsOfService />,
-      <Survey />,
-      <Booking />,
-      <FinalStep />,
-    ]);
+  const { steps, currentStepIndex, step, isLastStep, next } = useMultistepForm([
+    <TermsOfService />,
+    <Survey />,
+    <Booking />,
+    <FinalStep />,
+  ]);
 
   return (
     <div>

@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "../../../layouts/BaseLayout.astro";
+import BaseLayout from "../../../layouts/Base.astro";
 import NewsCard from "../../../components/NewsCard.astro";
 
 const allNews = await Astro.glob("../../en/news/*.md");
@@ -7,7 +7,7 @@ const pageTitle = "News";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <main class="h-full px-[5.625rem] pb-16">
+  <main class="h-full px-5 pb-16 md:px-[5.625rem]">
     <h2 class="pb-16 pt-10 text-center text-[2rem] font-bold text-u+burg">
       News
     </h2>

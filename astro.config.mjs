@@ -9,13 +9,13 @@ export default defineConfig({
   site: "https://uraohjain.hel.fi",
   output: "server",
   integrations: [react(), tailwind(), sitemap()],
-  // i18n: {
-  //   defaultLocale: "fi",
-  //   locales: ["fi", "en"],
-  // routing: {
-  //   prefixDefaultLocale: true,
-  // },
-  // },
+  i18n: {
+    defaultLocale: "fi",
+    locales: ["fi", "en"],
+    routing: {
+      prefixDefaultLocale: true,
+    },
+  },
   image: {
     service: squooshImageService(),
   },

@@ -1,35 +1,59 @@
+---
+import { Image } from "astro:assets";
+---
+
 <!-- Partners' logos component  -->
-<ul class="flex flex-row gap-2">
+<ul class="flex flex-row gap-4">
   <!-- Stadin logo -->
-  <li class="px-2 py-4">
-    <figure
-      class="relative flex h-16 w-16 items-center justify-center rounded-full bg-white p-2 md:h-28 md:w-28"
-    >
-      <img src="/img/frontpage/stadin.png" alt="StadinAO logo" />
-    </figure>
+  <li
+    class="flex h-16 w-16 items-center justify-center rounded-full bg-white px-2 py-4 md:h-28 md:w-28"
+  >
+    <Image
+      src="/img/frontpage/stadinao.svg"
+      alt="StadinAO logo"
+      class="h-auto w-[75px]"
+      loading="eager"
+      width={200}
+      height={200}
+    />
   </li>
   <!-- Metropolia logo -->
-  <li class="px-2 py-4">
-    <figure
-      class="relative flex h-16 w-16 items-center justify-center rounded-full bg-white p-2 md:h-28 md:w-28"
-    >
-      <img src="/img/frontpage/metropolia.png" alt="Metropolia logo" />
-    </figure>
+  <li
+    class="flex h-16 w-16 items-center justify-center rounded-full bg-white px-2 py-4 md:h-28 md:w-28"
+  >
+    <Image
+      src="/img/frontpage/metropolia-new.png"
+      alt="Metropolia logo"
+      class="h-auto w-[75px]"
+      loading="eager"
+      width={200}
+      height={200}
+    />
   </li>
   <!-- Laurea logo -->
-  <li class="px-2 py-4">
-    <figure
-      class="relative flex h-16 w-16 items-center justify-center rounded bg-white md:h-28 md:w-28 md:rounded-full"
-    >
-      <img src="/img/frontpage/laurea.png" alt="Laurea logo" />
-    </figure>
+  <li
+    class="flex h-16 w-16 items-center justify-center rounded bg-white px-4 py-6 md:h-28 md:w-28 md:rounded-full"
+  >
+    <Image
+      src="/img/frontpage/laurea-new.png"
+      alt="Laurea logo"
+      class="h-auto w-[56px]"
+      loading="eager"
+      width={200}
+      height={200}
+    />
   </li>
   <!-- EU logo -->
-  <li class="px-2 py-4">
-    <figure
-      class="relative flex h-16 w-16 items-center justify-center rounded bg-white md:h-28 md:w-28 md:rounded-full"
-    >
-      <img src="/img/frontpage/eu.png" alt="EU logo" />
-    </figure>
+  <li
+    class="flex h-16 w-16 items-center justify-center rounded bg-white px-4 py-6 md:h-28 md:w-28 md:rounded-full"
+  >
+    <Image
+      src="/img/frontpage/eu-new.png"
+      alt="EU logo"
+      class="h-auto w-[75px]"
+      loading="eager"
+      width={150}
+      height={150}
+    />
   </li>
 </ul>

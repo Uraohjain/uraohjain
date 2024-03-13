@@ -1,5 +1,5 @@
 ---
-layout: "../../../layouts/NewsLayout.astro"
+layout: "../../../layouts/News.astro"
 title: URAOHJAIN-PALVELU ALKAA 1. MARRASKUUTA 2023
 date: 2023-10-25
 author: Leea Hiltunen

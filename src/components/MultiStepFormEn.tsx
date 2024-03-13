@@ -1,15 +1,15 @@
-import { useState, useEffect, useLayoutEffect } from "react";
-// import SignupForm from './SignupForm';
+import { useState, useEffect } from "react";
 import { MultiStep } from "./MultiStepEn";
 import { motion } from "framer-motion";
 
+//TODO: remove this file and use MultiStepForm.tsx instead and add translations to it
 export function MultiStepForm() {
-  const [answers, setAnswers] = useState({
-    unemployement: "",
-    interest: "",
-    language: "",
-    diploma: "",
-  });
+  // const [answers, setAnswers] = useState({
+  //   unemployement: "",
+  //   interest: "",
+  //   language: "",
+  //   diploma: "",
+  // });
   const [unemployement, setUnemployement] = useState("No");
   const [interest, setInterest] = useState("No");
   const [language, setLanguage] = useState("No");
