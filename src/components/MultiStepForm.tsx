@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, type SetStateAction } from "react";
 import { MultiStepper } from "./MultiStep";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
-import { Image } from "astro:assets";
+
 
 export function MultiStepForm() {
   const [unemployement, setUnemployement] = useState("No");
@@ -14,6 +14,13 @@ export function MultiStepForm() {
   const [showMultiStepper, setShowMultiStepper] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [allRadioChecked, setAllRadioChecked] = useState(false);
+  const [showImage, setShowImage] = useState(true);
+  const [currentStepIndex, setCurrentStepIndex] = useState(0); // State to store current step index
+  
+  const handleNextStep = (index: SetStateAction<number>) => {
+    setCurrentStepIndex(index); // Update current step index in parent component
+  };
+  
 
   function handleNextClick() {
     if (
@@ -25,10 +32,12 @@ export function MultiStepForm() {
       setShowRadioForm(false);
       setShowMultiStepper(true);
       setShowMessage(false);
+      setShowImage(true);
     } else {
       setShowRadioForm(false);
       setShowMultiStepper(false);
       setShowMessage(true);
+      setShowImage(false);
     }
   }
 
@@ -46,8 +55,16 @@ export function MultiStepForm() {
     }
   }, [unemployement, interest, language, diploma]);
 
+
+  const photoUrls = [
+    "/img/register/uraohjain_porraskuva1.png",
+    "/img/register/uraohjain_porraskuva2.png",
+    "/img/register/uraohjain_porraskuva3.png",
+    "/img/register/uraohjain_porraskuva4.png",
+  ];
+
   return (
-    <div className="md:grid lg:grid-cols-2" id="pink-box">
+    <div className="grid grid-cols-1 lg:grid-cols-2" id="pink-box" style={{ minHeight: '600px' }}>
       <form className="md:p-18 bg-u+pinky p-4">
         {showRadioForm && (
           <motion.div
@@ -143,13 +160,6 @@ export function MultiStepForm() {
               <Button onClick={handleNextClick} disabled={!allRadioChecked}>
                 Seuraava
               </Button>
-              {/* <button
-                className="btn btn-outline btn-lg w-40 rounded-lg text-xl text-u+burg  hover:bg-u+burg hover:text-white disabled:cursor-not-allowed disabled:opacity-80"
-                onClick={handleNextClick}
-                disabled={!allRadioChecked}
-              >
-                Seuraava
-              </button> */}
             </div>
           </motion.div>
         )}
@@ -161,12 +171,16 @@ export function MultiStepForm() {
             animate={{ opacity: 1, translateX: 0 }}
             transition={{ type: "spring", stiffness: 80, duration: 0.5 }}
           >
+            <img src="/img/logo.svg" alt="uraohjain" width={320} height={370} />
             <h3 className="pb-5 text-2xl font-bold">
               Kiitos mielenkiinnostasi!
             </h3>
             <p className="text-light text-center text-xl">
               Valitettavasti Uraohjain-palvelun osallistumiskriteerit eivät
-              täyty kohdallasi. Voit olla yhteydessä{" "}
+              täyty kohdallasi.
+              <br/><br/>
+              Voit olla yhteydessä{" "}
+              <br/>
               <a
                 href="https://stadinao.fi/palvelut-tyollistymiseen-ja-opintoihin/"
                 className="underline hover:opacity-75"
@@ -174,15 +188,16 @@ export function MultiStepForm() {
                 Stadin Ammatti- ja aikuisopiston ura- ja
                 opinto-ohjauspalveluihin
               </a>{" "}
-              tai vierailla{" "}
+              <br/><br/>
+              tai vierailla sopivan palvelun löytämiseksi {" "}
+              <br/>
               <a
                 href="https://tyollisyyspalvelut.hel.fi/yhteystiedot/neuvonta"
                 className="underline hover:opacity-75"
               >
-                Helsingin työllisyyspalveluiden neuvontapisteillä
-              </a>{" "}
-              sopivan palvelun löytämiseksi. <br />
-              <br />
+                Helsingin työllisyyspalveluiden neuvontapisteillä.
+              </a>{" "}<br />
+              {/*
               Opintoihin liittyen voit kysyä ohjausta{" "}
               <a
                 href="https://www.laurea.fi/tyoelamapalvelut/palveluteot/avoin-amk-ohjauspalvelut/"
@@ -197,7 +212,9 @@ export function MultiStepForm() {
               >
                 Metropolia Ammattikorkeakoulun ohjauspalveluista
               </a>
+            */}
             </p>
+            <style>{`.text-xl a { font-weight: bold; }`}</style>
           </motion.div>
         )}
 
@@ -207,20 +224,26 @@ export function MultiStepForm() {
             animate={{ opacity: 1, translateX: 0 }}
             transition={{ type: "spring", stiffness: 50, duration: 2 }}
           >
-            <MultiStepper />
+            <MultiStepper onNextStep={handleNextStep}
+            />
           </motion.div>
         )}
       </form>
-      <figure className="hidden lg:block">
-        <img
-          src="/img/register/walking-man.jpg"
-          alt="Legs of a person walking"
-          className="h-full w-full bg-cover"
-          loading="eager"
-          width={1000}
-          height={1000}
-        />
-      </figure>
+      {showImage && (
+        <div className="relative">
+          <div className="absolute inset-0 bg-u+pinky"></div>
+          <figure className="hidden lg:block">
+            <img
+              src={photoUrls[currentStepIndex]}
+              alt=""
+              className="w-550 h-550 object-cover rounded-full absolute top-1/2 transform -translate-y-1/2 right-8"
+              loading="eager"
+              width={550}
+              height={550}
+            />
+          </figure>
+        </div>
+      )}
     </div>
   );
 }

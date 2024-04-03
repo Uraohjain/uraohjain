@@ -14,6 +14,7 @@ export const GET: APIRoute = async (request) => {
   const description = params.get("description") ?? SITE.description;
   const pagePath = params.get("pagePath") ?? "";
 
+
   // Used for most languages
   const inter = await getFont({
     family: "Inter",

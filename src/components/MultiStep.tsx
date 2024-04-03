@@ -135,7 +135,11 @@ export function TermsOfService() {
   );
 }
 
-export function MultiStepper() {
+interface MultiStepperProps {
+  onNextStep: (index: number) => void;
+}
+
+export function MultiStepper(props: MultiStepperProps) {
   const { steps, currentStepIndex, step, isLastStep, next } = useMultistepForm([
     <TermsOfService />,
     <Survey />,
@@ -143,36 +147,33 @@ export function MultiStepper() {
     <FinalStep />,
   ]);
 
+  const handleNextClick = () => {
+    next(); // Call next function from useMultistepForm
+    props.onNextStep(currentStepIndex + 1); // Call parent's onNextStep function with the updated index
+  };
+
   return (
     <div>
-      <form>
-        <p className="p-0 text-right font-semibold">
-          {currentStepIndex + 1} / {steps.length}
-        </p>
-        {step}
-        <div className="mt-10 flex justify-end space-x-40 md:mt-4 md:space-x-96">
-          {/* {!isFirstStep && (
-            <button type='button' className={'btn btn-lg btn-outline w-40'} onClick={back}>
-              Edellinen
-            </button>
-          )} */}
-
-          {!isLastStep && (
-            <Button type="button" onClick={next}>
-              {isLastStep ? "Kiitos!" : "Seuraava"}
-            </Button>
-          )}
-          {/* {!isLastStep && (
-            <button
-              type="button"
-              className="btn btn-outline btn-lg w-40 rounded-lg text-xl text-u+burg  hover:bg-u+burg hover:text-white"
-              onClick={next}
-            >
-              {isLastStep ? "Kiitos!" : "Seuraava"}
-            </button>
-          )} */}
-        </div>
-      </form>
+      <div className="flex justify-center space-x-4">
+        {steps.map((_, index) => (
+          <div
+            key={index}
+            className={`flex items-center justify-center w-8 h-8 rounded-full ${currentStepIndex === index ? 'bg-primary text-white' : 'bg-white text-gray-500'}`}
+          >
+            {currentStepIndex === index && <span>{index + 1}</span>}
+          </div>
+        ))}
+      </div>
+      <div className="mt-4">
+      {step}
+      </div>
+      <div className="mt-10 flex justify-end space-x-40 md:mt-4 md:space-x-96">
+        {!isLastStep && (
+          <Button type="button" onClick={handleNextClick}>
+            {isLastStep ? "Kiitos!" : "Seuraava"}
+          </Button>
+        )}
+      </div>
     </div>
   );
 }

@@ -10,6 +10,7 @@ export type Props = {
 const { currentPage } = Astro.props;
 const langCode = getLanguageFromURL(currentPage);
 const footers = FOOTER[langCode];
+
 ---
 
 {

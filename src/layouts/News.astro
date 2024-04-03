@@ -1,8 +1,6 @@
 ---
 import BaseLayout from "./Base.astro";
-import NewsCard from "../components/NewsCard.astro";
 import { Image } from "astro:assets";
-const allNews = await Astro.glob("../pages/fi/news/*.md");
 const { frontmatter } = Astro.props;
 const { title, image } = frontmatter;
 ---
@@ -25,18 +23,6 @@ const { title, image } = frontmatter;
       <main class="text-xl">
         <slot />
       </main>
-      <ul class="flex flex-col gap-4 pt-20 md:w-3/5 md:flex-row">
-        {
-          allNews.map((news) => (
-            <NewsCard
-              showImage={"block"}
-              frontmatter={news.frontmatter}
-              url={news.url}
-              tagType="h3"
-            />
-          ))
-        }
-      </ul>
     </article>
   </main>
 </BaseLayout>

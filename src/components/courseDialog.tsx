@@ -36,9 +36,6 @@ export function CourseDialog({
     setOpen(isOpen);
   }, [currentPath, course.id]);
 
-  console.log(currentId);
-  console.log(currentPath);
-
   function copyToClipboard() {
     navigator.clipboard.writeText(
       `${currentPath}?id=${currentId}&open=${open}`,

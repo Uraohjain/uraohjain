@@ -1,16 +1,46 @@
 ---
 import BaseLayout from "../../../layouts/Base.astro";
 import NewsCard from "../../../components/NewsCard.astro";
+import fetchApi from '../../../lib/strapi';
+import type Post from '../../../interfaces/post';
 
 const allNews = await Astro.glob("../../fi/news/*.md");
-const pageTitle = "Ajankohtaista";
+const pageTitle = "Ajankohtaiset";
+
+const posts = await fetchApi<Post[]>({
+  endpoint: 'posts?populate=postImage', // the content type to fetch
+  wrappedByKey: 'data', // the key to unwrap the response
+});
+
+//console.log(posts[0].attributes.title);
+/*      <ul>
+      {
+         posts.map((post) => (
+          <li>
+            <a href={``}>
+              {post.attributes.title}
+            </a>
+            <img src={`http://localhost:1337${post.attributes.postImage.data.attributes.url}`}>
+          </li>
+        ))
+      }
+    </ul>*/
+
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <main class="h-full px-5 pb-16 md:px-[5.625rem]">
-    <h1 class="pb-16 pt-10 text-center text-[2rem] font-bold text-u+burg">
+      <div
+      class="flex grow flex-col items-center justify-center gap-4"
+    >
+    <h1 class="pb-4 pt-6 text-center text-[2rem] font-bold text-u+burg">
       {pageTitle}
     </h1>
+    <p class="max-w-[900px] p-3 text-center text-xl font-light md:p-0">
+        Ajankohtaiset-sivulta voit lukea Uraohjain+ -hankkeen kuulumisia 
+        sekä saada tietoa Uraohjain-palvelun tapahtumista.
+      </p>
+      </div>
     <section aria-label="New Blog News" class="pb-10">
       <ul
         class="flex flex-col items-center md:grid md:grid-cols-3 md:gap-4 lg:grid-cols-4"
@@ -26,5 +56,6 @@ const pageTitle = "Ajankohtaista";
         }
       </ul>
     </section>
+    <hr>
   </main>
 </BaseLayout>

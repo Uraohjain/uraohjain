@@ -51,13 +51,16 @@ export function Header({
     );
   }
 
+  const currentLanguagePrefix = pathname?.split('/')[1];
+  const signupUrl = `/${langCode}${pathname?.slice(currentLanguagePrefix?.length)}signup`;
+
   return Object.entries(navbar).map(([_header, children], idx) => (
     <header
       key={idx}
       className="flex w-full flex-1 flex-col items-end gap-8 bg-u+green px-5 md:px-[5.625rem] lg:items-center"
     >
       {/* <div key={idx} className="px-6 xl:px-12"> */}
-      <nav className="relative flex w-full items-center justify-between gap-4">
+      <nav className="flex justify-between w-full items-center gap-4 lg:w-auto">
         <ul className="hidden h-full lg:flex">
           {children.map((child, idx) => {
             const url = pathname + child.link;
@@ -81,7 +84,7 @@ export function Header({
 
         <div className="hidden grow justify-end gap-4 lg:flex">
           <a
-            href={`${langCode}/signup`}
+            href={signupUrl}
             className="hidden h-9 items-center justify-center whitespace-nowrap rounded-md bg-u+green/50 bg-u+sunny px-3 py-0 text-lg font-bold text-u+green ring-offset-background  transition-colors hover:bg-u+sunny/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 md:inline-flex"
           >
             {langCode === "fi" ? "Ilmoittaudu" : "Sign Up"}

@@ -1,15 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, type SetStateAction } from "react";
 import { MultiStep } from "./MultiStepEn";
 import { motion } from "framer-motion";
+import { Button } from "./ui/button";
 
-//TODO: remove this file and use MultiStepForm.tsx instead and add translations to it
 export function MultiStepForm() {
-  // const [answers, setAnswers] = useState({
-  //   unemployement: "",
-  //   interest: "",
-  //   language: "",
-  //   diploma: "",
-  // });
   const [unemployement, setUnemployement] = useState("No");
   const [interest, setInterest] = useState("No");
   const [language, setLanguage] = useState("No");
@@ -19,6 +13,12 @@ export function MultiStepForm() {
   const [showMultiStepper, setShowMultiStepper] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [allRadioChecked, setAllRadioChecked] = useState(false);
+  const [showImage, setShowImage] = useState(true);
+  const [currentStepIndex, setCurrentStepIndex] = useState(0); // State to store current step index
+  
+  const handleNextStep = (index: SetStateAction<number>) => {
+    setCurrentStepIndex(index); // Update current step index in parent component
+  };
 
   function handleNextClick() {
     if (
@@ -30,12 +30,21 @@ export function MultiStepForm() {
       setShowRadioForm(false);
       setShowMultiStepper(true);
       setShowMessage(false);
+      setShowImage(true);
     } else {
       setShowRadioForm(false);
       setShowMultiStepper(false);
       setShowMessage(true);
+      setShowImage(false);
     }
   }
+
+  const photoUrls = [
+    "/img/register/uraohjain_porraskuva1.png",
+    "/img/register/uraohjain_porraskuva2.png",
+    "/img/register/uraohjain_porraskuva3.png",
+    "/img/register/uraohjain_porraskuva4.png",
+  ];
 
   useEffect(() => {
     // Check if all radio buttons have been selected (with any value)
@@ -52,7 +61,7 @@ export function MultiStepForm() {
   }, [unemployement, interest, language, diploma]);
 
   return (
-    <div className="md:grid md:grid-cols-2" id="pink-box">
+    <div className="grid grid-cols-1 lg:grid-cols-2" id="pink-box" style={{ minHeight: '600px' }}>
       <form className="md:p-18 bg-u+pinky p-4">
         {showRadioForm && (
           <motion.div
@@ -146,13 +155,9 @@ export function MultiStepForm() {
               </li>
             </ol>
             <div className="mt-10 flex justify-end md:mt-4">
-              <button
-                className="btn btn-outline btn-lg w-40 rounded-lg text-xl text-u+burg  hover:bg-u+burg hover:text-white disabled:cursor-not-allowed disabled:opacity-80"
-                onClick={handleNextClick}
-                disabled={!allRadioChecked}
-              >
+            <Button onClick={handleNextClick} disabled={!allRadioChecked}>
                 Next
-              </button>
+              </Button>
             </div>
           </motion.div>
         )}
@@ -164,28 +169,35 @@ export function MultiStepForm() {
             animate={{ opacity: 1, translateX: 0 }}
             transition={{ type: "spring", stiffness: 80, duration: 0.5 }}
           >
+          <img src="/img/logo.svg" alt="uraohjain" width={320} height={370} />
             <h3 className="pb-5 text-2xl font-bold">
               Thank you for your interest!
             </h3>
             <p className="text-light text-center text-xl">
-              Unfortunately, your situation does not meet the criteria for
-              joining the CareerDriver service. You can contact Helsinki
+            Unfortunately, your situation does not meet the criteria for
+              joining the CareerDriver service.
+              <br/><br/>
+              You can contact Helsinki
               Vocational College and Adult Institute’s{" "}
+              <br/>
               <a
                 href="https://stadinao.fi/palvelut-tyollistymiseen-ja-opintoihin/"
-                className="underline hover:text-u+burg-darker"
+                className="underline hover:opacity-75"
               >
-                career and guidance counselling services
+                Stadin Ammatti- ja aikuisopiston ura- ja
+                opinto-ohjauspalveluihin
               </a>{" "}
+              <br/><br/>
               or visit an advice service point of{" "}
+              <br/>
               <a
                 href="https://tyollisyyspalvelut.hel.fi/en/contact-information/advice-services"
-                className="underline hover:text-u+burg-darker"
+                className="underline hover:opacity-75"
               >
-                Helsinki Employment Services
-              </a>{" "}
-              to find a suitable service. <br />
-              <br />
+                Helsinki Employment Services.
+              </a>{" "}<br />
+              {/*
+                            <br />
               If you need guidance for your studies, you can turn to Laurea
               University of Applied Sciences’ Open UAS{" "}
               <a
@@ -201,7 +213,9 @@ export function MultiStepForm() {
               >
                 guidance services
               </a>
+            */}
             </p>
+            <style>{`.text-xl a { font-weight: bold; }`}</style>
           </motion.div>
         )}
 
@@ -211,19 +225,25 @@ export function MultiStepForm() {
             animate={{ opacity: 1, translateX: 0 }}
             transition={{ type: "spring", stiffness: 50, duration: 2 }}
           >
-            <MultiStep />
+            <MultiStep onNextStep={handleNextStep}/>
           </motion.div>
         )}
       </form>
-      <figure className="hidden md:block">
-        <img
-          src="/img/register/walking-man.jpg"
-          alt=""
-          className="h-full w-full bg-cover"
-          width={1000}
-          height={1000}
-        />
-      </figure>
+      {showImage && (
+        <div className="relative">
+          <div className="absolute inset-0 bg-u+pinky"></div>
+          <figure className="hidden lg:block">
+            <img
+              src={photoUrls[currentStepIndex]}
+              alt=""
+              className="w-550 h-550 object-cover rounded-full absolute top-1/2 transform -translate-y-1/2 right-8"
+              loading="eager"
+              width={550}
+              height={550}
+            />
+          </figure>
+        </div>
+      )}
     </div>
   );
 }
