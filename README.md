@@ -25,6 +25,5 @@ This website is created with the following technologies:
 - [ ] add Strapi connecting to the frontend
   - news page
   - study offering
-- [ ] redesign signup page to use the new design
 - [ ] quality of life improvements
   - clean up
