@@ -1,28 +1,53 @@
 ---
 import BaseLayout from "../../../layouts/Base.astro";
 import NewsCard from "../../../components/NewsCard.astro";
-
-const allNews = await Astro.glob("../../en/news/*.md");
+import fetchApi from '../../../lib/strapi';
+import type Post from '../../../interfaces/post';
 const pageTitle = "News";
+
+const posts = await fetchApi<Post[]>({
+  endpoint: 'posts?populate=postImage', // the content type to fetch
+  wrappedByKey: 'data', // the key to unwrap the response
+});
+
+const strapiUrl = import.meta.env.STRAPI_URL;
+const siteUrl = import.meta.env.SITE_URL;
+
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <main class="h-full px-5 pb-16 md:px-[5.625rem]">
-    <h2 class="pb-16 pt-10 text-center text-[2rem] font-bold text-u+burg">
-      News
-    </h2>
-    <section aria-label="New Blog News" class="h-full">
-      <ul class="md:grid md:grid-cols-4 md:gap-4">
-        {
-          allNews.map((news) => (
+      <div
+      class="flex grow flex-col items-center justify-center gap-4"
+    >
+    <h1 class="pb-4 pt-6 text-center text-[2rem] font-bold text-u+burg">
+      {pageTitle}
+    </h1>
+    <p class="max-w-[900px] p-3 text-center text-xl font-light md:p-0">
+      On the News page you can read news about the Career Guide+ project
+      and get information about the events of the Career Guide service.
+      </p>
+      </div>
+      <br><br>
+    <section aria-label="New Blog News" class="pb-10">
+      <ul
+        class="flex flex-col items-center md:grid md:grid-cols-3 md:gap-4 lg:grid-cols-4"
+      >
+      {
+          posts.map((post) => (
             <NewsCard
-              frontmatter={news.frontmatter}
-              url={news.url}
+              title={post.attributes.titleEn}
+              description={post.attributes.descriptionEn}
+              imgsrc={`${strapiUrl}${post.attributes.postImage.data.attributes.url}`}
+              imgalt={`${strapiUrl}${post.attributes.postImage.data.attributes.alt}`}
+              url={siteUrl+"/en/news"}
+              id = {post.id}
               tagType="h2"
             />
           ))
         }
       </ul>
     </section>
+    <hr>
   </main>
 </BaseLayout>

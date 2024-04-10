@@ -1,0 +1,45 @@
+---
+
+import BaseLayout from "../../../layouts/Base.astro";
+import fetchApi from '../../../lib/strapi';
+import type Post from '../../../interfaces/post';
+import styles from "./md.module.css";
+import { Image } from "astro:assets";
+import { marked } from "marked";
+
+const posts = await fetchApi<Post[]>({
+  endpoint: 'posts?populate=postImage', // the content type to fetch
+  wrappedByKey: 'data', // the key to unwrap the response
+});
+
+const strapiUrl = import.meta.env.STRAPI_URL;
+
+const pathname = Astro.url.pathname;
+const parts = pathname.split('/');
+const number = parts[parts.length - 1];
+const id = number-1;
+
+
+---
+
+<BaseLayout pageTitle={""}>
+  <main class="px-[5.625rem] pb-16">
+    <header>
+      <h1 class="pb-16 pt-10 text-center text-[2rem] font-bold text-u+burg">
+        {posts[id].attributes.title}
+      </h1>
+      <Image
+        class="float-right md:pl-10"
+        src={`${strapiUrl}${posts[id].attributes.postImage.data.attributes.url}`}
+        alt={`${strapiUrl}${posts[id].attributes.postImage.data.attributes.alt}`}
+        width={400}
+        height={225}
+      />
+    </header>
+    <article class="flex flex-col">
+      <main class="text-xl">
+      <div set:html={marked.parse(posts[id].attributes.postContent)} class={styles.pageContent}/>
+      </main>
+    </article>
+  </main>
+</BaseLayout>

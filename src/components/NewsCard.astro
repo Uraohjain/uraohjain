@@ -1,14 +1,14 @@
 ---
 import { Image } from "astro:assets";
-const { frontmatter, url, tagType, showImage = "block" } = Astro.props;
+const { title, url, tagType, showImage = "block", imgsrc, imgalt, description, id } = Astro.props;
 const Tag = tagType || "h2";
-const { title, image, description } = frontmatter;
+
 ---
 
 <li class="flex">
-  <a href={url} aria-hidden="true" class="flex flex-col gap-1">
+  <a href={url+ "/" +id} aria-hidden="true" class="flex flex-col gap-1">
     <figure class={`${showImage}`}>
-      <Image src={image.src} alt={image.alt} width={500} height={500} />
+      <Image src={imgsrc} alt={imgalt} width={500} height={500} />
     </figure>
     <Tag class="font-bold uppercase md:text-sm lg:text-xl">
       {title}
