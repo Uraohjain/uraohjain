@@ -1,0 +1,13 @@
+.pageContent h3 {
+  @apply pb-8 text-3xl font-bold;
+}
+
+.pageContent ul {
+  @apply list-disc;
+  list-style-position: inside;
+  margin-bottom: 1em;
+}
+
+.pageContent p {
+  margin-bottom: 1em;
+}
