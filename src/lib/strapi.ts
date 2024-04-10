@@ -23,8 +23,9 @@ interface Props {
       endpoint = endpoint.slice(1);
     }
 
-    //console.log(`${import.meta.env.STRAPI_URL}`);
-    const url = new URL(`http://localhost:1337/api/${endpoint}`);
+    const strapiUrl = import.meta.env.STRAPI_URL+"/api/";
+
+    const url = new URL(`${strapiUrl}${endpoint}`);
 
   
     if (query) {
