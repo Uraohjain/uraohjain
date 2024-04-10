@@ -2,54 +2,17 @@
 import { CourseDialog } from "../../components/courseDialog";
 import BaseLayout from "../../layouts/Base.astro";
 import { cn } from "../../lib/utils";
+import type Study from '../../interfaces/study';
+import fetchApi from '../../lib/strapi';
 
 const currentPath = Astro.url;
 const pageTitle = "Opintotarjonta";
 
-const courses = [
-  {
-    id: 21,
-    name: "Osaamiskokonaisuus 1",
-    title: "Web-kehittäjä",
-    tag: "ict",
-  },
-  {
-    id: 3,
-    name: "Osaamiskokonaisuus 2",
-    title: "Web-kehittäjä",
-    tag: "software-development",
-  },
-  {
-    id: 12,
-    name: "Osaamiskokonaisuus 3",
-    title: "Web-kehittäjä",
-    tag: "software-development",
-  },
-  {
-    id: 5,
-    name: "Osaamiskokonaisuus 4",
-    title: "Web-kehittäjä",
-    tag: "ict",
-  },
-  {
-    id: 9,
-    name: "Osaamiskokonaisuus 5",
-    title: "Web-kehittäjä",
-    tag: "ict",
-  },
-  {
-    id: 11,
-    name: "Osaamiskokonaisuus 6",
-    title: "Web-kehittäjä",
-    tag: "ict",
-  },
-  {
-    id: 43,
-    name: "Osaamiskokonaisuus 7",
-    title: "Journalismi ja verkkomedia, sosiaalinen media",
-    tag: "media",
-  },
-];
+const study = await fetchApi<Study[]>({
+  endpoint: 'studies', // the content type to fetch
+  wrappedByKey: 'data', // the key to unwrap the response
+});
+
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -99,7 +62,7 @@ const courses = [
               </defs>
             </svg>
           </div>
-          <p>ICT and Software Development</p>
+          <p>ICT ja sovelluskehitys</p>
         </a>
         <a class="flex flex-col items-center gap-4" href="#media">
           <div class="rounded-full bg-u+pinky p-6">
@@ -157,20 +120,21 @@ const courses = [
 
       <ul class="grid grid-flow-dense grid-cols-1 gap-2 md:grid-cols-3">
         {
-          courses.map((course) => (
+          study.map((course) => (
             <li
               class={cn(
                 "flex h-[252px] max-h-[252px] w-full max-w-[363px] flex-col items-center justify-center",
-                course.tag === "media" ? "bg-u+pinky" : "bg-u+sunny",
+                course.attributes.tag === "media" ? "bg-u+pinky" : "bg-u+sunny",
               )}
             >
               <CourseDialog
                 currentPath={currentPath.href}
                 course={course}
                 client:idle
+                className="cursor-pointer" 
               >
                 <div class="rounded-full bg-white px-8 py-6">
-                  {course.tag === "media" ? (
+                  {course.attributes.tag === "media" ? (
                     <svg
                       width="59"
                       height="43"
@@ -253,8 +217,8 @@ const courses = [
                     </svg>
                   )}
                 </div>
-                <p class="m-0 p-0 font-bold">{course.name}</p>
-                <p class="m-0 p-0">{course.title}</p>
+                <p class="m-0 p-0 font-bold">{course.attributes.title}</p>
+                <p class="m-0 p-0">{course.attributes.field}</p>
               </CourseDialog>
             </li>
           ))

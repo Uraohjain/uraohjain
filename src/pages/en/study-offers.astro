@@ -2,54 +2,18 @@
 import { CourseDialog } from "../../components/courseDialog";
 import BaseLayout from "../../layouts/Base.astro";
 import { cn } from "../../lib/utils";
+import type Study from '../../interfaces/study';
+import fetchApi from '../../lib/strapi';
 
-const currentPath = Astro.url.search;
+
+const study = await fetchApi<Study[]>({
+  endpoint: 'studies', // the content type to fetch
+  wrappedByKey: 'data', // the key to unwrap the response
+});
+
+const currentPath = Astro.url;
 const pageTitle = "Study Offerings";
 
-const courses = [
-  {
-    id: 21,
-    name: "Competences 1",
-    title: "Web-developer",
-    tag: "ict",
-  },
-  {
-    id: 3,
-    name: "Competences 2",
-    title: "Web-developer",
-    tag: "software-development",
-  },
-  {
-    id: 12,
-    name: "Competences 3",
-    title: "Web-developer",
-    tag: "software-development",
-  },
-  {
-    id: 5,
-    name: "Competences 4",
-    title: "Web-developer",
-    tag: "ict",
-  },
-  {
-    id: 9,
-    name: "Competences 5",
-    title: "Web-developer",
-    tag: "ict",
-  },
-  {
-    id: 11,
-    name: "Competences 6",
-    title: "Web-developer",
-    tag: "ict",
-  },
-  {
-    id: 43,
-    name: "Competences 7",
-    title: "Journalism and online media, social media",
-    tag: "media",
-  },
-];
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -157,20 +121,21 @@ const courses = [
 
       <ul class="grid grid-flow-dense grid-cols-3 gap-2">
         {
-          courses.map((course) => (
+          study.map((course) => (
             <li
               class={cn(
                 "flex h-[252px] max-h-[252px] w-full max-w-[363px] flex-col items-center justify-center",
-                course.tag === "media" ? "bg-u+pinky" : "bg-u+sunny",
+                course.attributes.tag === "media" ? "bg-u+pinky" : "bg-u+sunny",
               )}
             >
               <CourseDialog
-                currentPath={currentPath}
+                currentPath={currentPath.href}
                 course={course}
                 client:idle
+                className="cursor-pointer"
               >
                 <div class="rounded-full bg-white px-8 py-6">
-                  {course.tag === "media" ? (
+                  {course.attributes.tag === "media" ? (
                     <svg
                       width="59"
                       height="43"
@@ -253,8 +218,8 @@ const courses = [
                     </svg>
                   )}
                 </div>
-                <p class="m-0 p-0 font-bold">{course.name}</p>
-                <p class="m-0 p-0">{course.title}</p>
+                <p class="m-0 p-0 font-bold">{course.attributes.titleEn}</p>
+                <p class="m-0 p-0">{course.attributes.fieldEn}</p>
               </CourseDialog>
             </li>
           ))
