@@ -34,14 +34,15 @@ const siteUrl = import.meta.env.SITE_URL;
         class="flex flex-col items-center md:grid md:grid-cols-3 md:gap-4 lg:grid-cols-4"
       >
       {
-          posts.map((post) => (
+          posts.map((post, index) => (
             <NewsCard
+              key={index}
               title={post.attributes.title}
               description={post.attributes.description}
               imgsrc={`${strapiUrl}${post.attributes.postImage.data.attributes.url}`}
               imgalt={`${strapiUrl}${post.attributes.postImage.data.attributes.alt}`}
               url={siteUrl+"/fi/news"}
-              id = {post.id}
+              id = {index+1}
               tagType="h2"
             />
           ))
