@@ -1,8 +1,9 @@
 import { defineConfig, squooshImageService } from "astro/config";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
-
 import sitemap from "@astrojs/sitemap";
+
+import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,15 +14,19 @@ export default defineConfig({
     defaultLocale: "fi",
     locales: ["fi", "en"],
     routing: {
-      prefixDefaultLocale: true,
-    },
+      prefixDefaultLocale: true
+    }
   },
   image: {
-    service: squooshImageService(),
+    service: squooshImageService()
   },
   vite: {
     optimizeDeps: {
-      exclude: ["@resvg/resvg-js"],
-    },
+      exclude: ["@resvg/resvg-js"]
+    }
   },
+  adapter: node({
+    mode: "standalone",
+    imageCDN: false,
+  })
 });

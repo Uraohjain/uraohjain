@@ -55,7 +55,7 @@ export const NAVBAR: Navbar = {
       { text: "News", link: "en/news" },
       { text: "Study Offering", link: "en/study-offers" },
       { text: "For Businesses", link: "en/companies" },
-      { text: "Careerdriver+", link: "en/uraohjain" },
+      { text: "Uraohjain+", link: "en/uraohjain" },
       { text: "Contact", link: "en/contact" },
     ],
   },
@@ -75,7 +75,7 @@ export const NAVBAR_HEADER_MAP: Record<
   Exclude<KnownLanguageCode, "fi">,
   Record<OuterHeaders, string>
 > = {
-  en: { Uraohjain: "CareerDriver" },
+  en: { Uraohjain: "Uraohjain" },
 };
 
 export const FOOTER: Footer = {
