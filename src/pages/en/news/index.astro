@@ -29,26 +29,24 @@ const siteUrl = import.meta.env.SITE_URL;
       </p>
       </div>
       <br><br>
-    <section aria-label="New Blog News" class="pb-10">
-      <ul
-        class="flex flex-col items-center md:grid md:grid-cols-3 md:gap-4 lg:grid-cols-4"
-      >
-      {
-          posts.map((post, index) => (
-            <NewsCard
-              key={index}
-              title={post.attributes.titleEn}
-              description={post.attributes.descriptionEn}
-              imgsrc={`${strapiUrl}${post.attributes.postImage.data.attributes.url}`}
-              imgalt={`${strapiUrl}${post.attributes.postImage.data.attributes.alt}`}
-              url={siteUrl+"/en/news"}
-              id = {index+1}
-              tagType="h2"
-            />
-          ))
-        }
-      </ul>
-    </section>
-    <hr>
+      <section aria-label="New Blog News" class="pb-10">
+        <ul class="flex flex-col md:grid md:grid-cols-3 md:gap-4 lg:grid-cols-4">
+          {
+            posts.map((post, index) => (
+              <NewsCard
+                key={index}
+                title={post.attributes.title}
+                description={post.attributes.description}
+                imgsrc={`${strapiUrl}${post.attributes.postImage.data.attributes.url}`}
+                imgalt={`${strapiUrl}${post.attributes.postImage.data.attributes.alt}`}
+                url={siteUrl+"/en/news"}
+                id={index+1}
+                tagType="h2"
+              />
+            ))
+          }
+        </ul>
+      </section>
+      <hr>   
   </main>
 </BaseLayout>
