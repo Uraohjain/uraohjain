@@ -167,9 +167,9 @@ export function MultiStepper(props: MultiStepperProps) {
       <div className="mt-4">
       {step}
       </div>
-      <div className="mt-10 flex justify-end space-x-40 md:mt-4 md:space-x-96">
+      <div className="mt-10 flex justify-end space-x-40 md:mt-4 md:space-x-96 h-14 w-30">
         {!isLastStep && (
-          <Button type="button" onClick={handleNextClick}>
+          <Button type="button" size="custom" onClick={handleNextClick}>
             {isLastStep ? "Kiitos!" : "Seuraava"}
           </Button>
         )}

@@ -24,6 +24,7 @@ const buttonVariants = cva(
         default: "h-14 w-14", // Adjust height and width to make it circular
         sm: "h-9 w-9", // Adjust height and width to make it circular
         lg: "h-11 w-11", // Adjust height and width to make it circular
+        custom: "h-14 w-40",
         icon: "h-10 w-10",
       },
     },

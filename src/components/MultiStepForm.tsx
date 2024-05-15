@@ -157,7 +157,7 @@ export function MultiStepForm() {
               </li>
             </ol>
             <div className="flex justify-end pt-10 md:pt-4">
-              <Button onClick={handleNextClick} disabled={!allRadioChecked}>
+              <Button size="custom" onClick={handleNextClick} disabled={!allRadioChecked}>
                 Seuraava
               </Button>
             </div>

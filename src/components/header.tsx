@@ -130,7 +130,7 @@ export function Header({
               );
             })}
             <div className="flex items-center gap-5">
-              <Button className=" bg-u+sunny px-3 py-0 text-lg text-u+green hover:bg-u+sunny/80">
+              <Button className="bg-u+sunny px-3 py-0 text-lg text-u+green hover:bg-u+sunny/80">
                 Ilmoittaudu
               </Button>
               <LanguageSelect language={langCode} />
