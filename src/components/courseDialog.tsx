@@ -57,14 +57,13 @@ export function CourseDialog({
         setCurrentId(String(course.id));
         setOpen(!open);
       }}
-
     >
       <DialogTrigger asChild>
         <div className="flex flex-col items-center">{children}</div>
       </DialogTrigger>
       <DialogContent
         className={cn(
-          "flex flex-col items-center sm:max-w-[425px] md:max-w-[861px]",
+          "flex flex-col items-center sm:max-w-[425px] md:max-w-[861px] overflow-y-auto max-h-[80vh]",
           course.attributes.tag === "media" ? "bg-u+pinky" : "bg-u+sunny",
         )}
       >
@@ -79,41 +78,41 @@ export function CourseDialog({
                 className="h-10 w-10"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g clip-path="url(#clip0_1266_1615)">
+                <g clipPath="url(#clip0_1266_1615)">
                   <path
                     d="M29.4833 35.4822C35.464 35.4822 40.3123 30.5875 40.3123 24.5496C40.3123 18.5117 35.464 13.6169 29.4833 13.6169C23.5026 13.6169 18.6543 18.5117 18.6543 24.5496C18.6543 30.5875 23.5026 35.4822 29.4833 35.4822Z"
                     stroke="#701C3E"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M29.5003 31.3793C33.2365 31.3793 36.2653 28.3215 36.2653 24.5496C36.2653 20.7776 33.2365 17.7199 29.5003 17.7199C25.7641 17.7199 22.7354 20.7776 22.7354 24.5496C22.7354 28.3215 25.7641 31.3793 29.5003 31.3793Z"
                     stroke="#701C3E"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M12.4442 4.6041H4.98926V8.49465H12.4442V4.6041Z"
                     stroke="#701C3E"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M52.4872 13.8123H45.0322V17.7029H52.4872V13.8123Z"
                     stroke="#701C3E"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M42.8278 8.49465V0.637085H16.8197V8.49465H0.630859V42.3629H58.3687V8.49465H42.8278Z"
                     stroke="#701C3E"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </g>
                 <defs>
@@ -131,7 +130,7 @@ export function CourseDialog({
                 className="h-10 w-10"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g clip-path="url(#clip0_1384_112)">
+                <g clipPath="url(#clip0_1384_112)">
                   <path
                     d="M53.9031 3.12576H8.98374C8.6531 3.12576 8.37891 3.40109 8.37891 3.7331V30.0188C8.37891 30.3508 8.6531 30.6261 8.98374 30.6261H53.9112C54.2418 30.6261 54.516 30.3508 54.516 30.0188V3.7331C54.516 3.40109 54.2418 3.12576 53.9112 3.12576H53.9031ZM53.2983 29.4114H9.58858V4.34044H53.3063V29.4114H53.2983Z"
                     fill="#701C3E"
