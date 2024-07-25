@@ -1,8 +1,24 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/Base.astro";
+import fetchApi from "../../lib/strapi";
+import type ContactResponse from "../../interfaces/contact";
 
 const pageTitle = "Uraohjain+ project";
+
+const response = await fetchApi<{ attributes: ContactResponse[] }>({
+  endpoint: "contact?populate=*",
+  wrappedByKey: "data", // the key to unwrap the response
+});
+
+
+// Extract contact data
+const contactData = response.attributes;
+const contactLists = {
+  StadinAO: contactData.ContactListAO,
+  Metropolia: contactData.ContactListMetropolia,
+  Laurea: contactData.ContactListLaurea,
+};
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -77,5 +93,27 @@ const pageTitle = "Uraohjain+ project";
         </p>
       </div>
     </section>
+    <section>
+      <h3 class="py-16 text-3xl font-bold text-center">
+        Project Staff
+      </h3>
+      <section>
+        <div class="grid grid-cols-1 gap-8 px-5 md:grid-cols-3 md:px-[5.625rem]">
+          {Object.entries(contactLists).map(([organization, contacts]) => (
+            <div key={organization} class="box bg-custom p-8">
+              <h4 class="pb-4 text-center text-xl font-bold">{organization}</h4>
+              {contacts.map(contact => contact.Name ? (
+                <>
+                  <p class="text-center text-lg font-bold">{contact.Name}</p>
+                  <p class="text-center text-lg font-light">{contact.TitleEn}</p>
+                  <p class="text-center text-lg font-light">{contact.Phone}</p>
+                  <p class="text-center text-lg font-light">{contact.Email}</p>
+                  <br />
+                </>
+              ) : null)}
+            </div>
+          ))}
+        </div>
+      </section>
   </main>
 </BaseLayout>

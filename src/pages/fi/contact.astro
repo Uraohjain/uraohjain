@@ -1,7 +1,15 @@
 ---
 import BaseLayout from "../../layouts/Base.astro";
+import fetchApi from "../../lib/strapi";
+import type ContactResponse from "../../interfaces/contact";
 
 const pageTitle = "Yhteydenotto";
+
+const response = await fetchApi<{ attributes: ContactResponse[] }>({
+  endpoint: "contact?populate=*",
+  wrappedByKey: "data", // the key to unwrap the response
+});
+
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -15,17 +23,17 @@ const pageTitle = "Yhteydenotto";
           <h2 class="text-2xl font-bold">
             Hankkeeseen liittyvät yhteydenotot:
           </h2>
-          <p class="p-0 font-extrabold">Jaakko Hyytiä</p>
-          <p class="p-0">Projektipäällikkö</p>
-          <a href="tel:09 310 25104">09 310 25104</a>
-          <a href="mailto:jaakko.hyytia@hel.fi">jaakko.hyytia@hel.fi</a>
+          <p class="p-0 font-extrabold">{response.attributes.ContactListAO[0].Name}</p>
+          <p class="p-0">{response.attributes.ContactListAO[0].Title}</p>
+          <a href="tel:040 664 3020">{response.attributes.ContactListAO[0].Phone}</a>
+          <a href="mailto:jaakko.hyytia@hel.fi">{response.attributes.ContactListAO[0].Email}</a>
         </li>
         <li class="flex flex-col bg-u+sunny px-14 py-11 text-xl font-light">
           <h2 class="text-2xl font-bold">Palveluun liittyvät yhteydenotot:</h2>
-          <p class="p-0 font-extrabold">Leea Hiltunen</p>
-          <p class="p-0">Projektikoordinaattori</p>
-          <a href="tel:040 198 6544">040 198 6544</a>
-          <a href="mailto:leea.hiltunen@hel.fi">leea.hiltunen@hel.fi</a>
+          <p class="p-0 font-extrabold">{response.attributes.ContactListAO[1].Name}</p>
+          <p class="p-0">{response.attributes.ContactListAO[1].Title}</p>
+          <a href="tel:040 198 6544">{response.attributes.ContactListAO[1].Phone}</a>
+          <a href="mailto:leea.hiltunen@hel.fi">{response.attributes.ContactListAO[1].Email}</a>
         </li>
       </ul>
     </div>

@@ -2,8 +2,25 @@
 import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/Base.astro";
 import { Separator } from "../../components/ui/seperator";
+import fetchApi from '../../lib/strapi';
+import type InfoResponse from '../../interfaces/info';
 
 const pageTitle = "Home";
+
+// Fetch the data from the API
+const info = await fetchApi<{ data: InfoResponse[] }>({
+  endpoint: 'info', // the content type to fetch
+  wrappedByKey: 'data', // the key to unwrap the response
+});
+
+// Function to replace newlines with <br> tags and return null for empty text
+const formatText = (text: string | null) => {
+  if (!text) return null;
+  return text.replace(/\n/g, '<br>');
+};
+
+// Convert text to HTML
+const formattedHtmlContent = info ? formatText(info.attributes.infotextEn) : null;
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -30,16 +47,18 @@ const pageTitle = "Home";
       </p>
     </section>
     <section>
-      <div
-        class="border-4 border-u+green px-6 py-12 md:basis-3/5 md:px-12 md:py-12 text-balance text-center"
-      >
-        <h3 class="text-3xl font-bold text-u+burg">
-          The Uraohjain service is on summer break from 12.6.-15.7.2024. Registration closes on 8.6. and reopens on 8.7.
-          <br>
-          Have a great summer! 
-        </h3>
-      </div>
-    </section>
+      {/* Conditionally render the entire div */}
+            {info && info.attributes.infotextEn ? (
+              <div
+                class="border-4 border-u+green px-6 py-12 md:basis-3/5 md:px-12 md:py-12 text-balance text-center"
+              >
+                {/* Render formatted text with HTML line breaks */}
+                <h3 set:html={formattedHtmlContent} class="text-3xl font-bold text-u+burg" />
+              </div>
+            ) : null}
+            </section>
+            </div>
+          </section>
     <!-- Benefits section -->
     <section class="flex flex-col items-center p-4 md:px-16 md:py-8">
       <h3 class="pb-8 text-[2rem] font-bold">
