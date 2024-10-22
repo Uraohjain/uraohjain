@@ -6,6 +6,6 @@ export const langPathRegex = /\/([a-z]{2,3}-?[a-zA-Z]{0,4})\//;
 
 export function getLanguageFromURL(pathname: string): KnownLanguageCode {
   const langCodeMatch = pathname.match(langPathRegex);
-  const langCode = langCodeMatch ? langCodeMatch[1] : "en";
+  const langCode = langCodeMatch ? langCodeMatch[1] : "fi";
   return langCode as KnownLanguageCode;
 }
