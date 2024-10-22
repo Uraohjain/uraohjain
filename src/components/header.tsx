@@ -5,7 +5,6 @@ import { LanguageSelect } from "./languageSelect.tsx";
 import { NAVBAR, NAVBAR_HEADER_MAP } from "../config";
 import { getLanguageFromURL } from "../languages";
 import { cn } from "../lib/utils.ts";
-import { Button } from "./ui/button.tsx";
 
 export function Header({
   currentPage,
@@ -81,7 +80,10 @@ export function Header({
             );
           })}
         </ul>
-
+        <a
+            href={`/${langCode}${pathname?.slice(currentLanguagePrefix?.length)}`}
+            className="lg:hidden block p-4 text-lg text-white transition-colors hover:bg-u+green-darker"
+          >            {langCode === "fi" ? "Etusivu" : "Home"}</a>
         <div className="hidden grow justify-end gap-4 lg:flex">
           <a
             href={signupUrl}
@@ -92,7 +94,7 @@ export function Header({
           <LanguageSelect language={langCode} />
         </div>
         <div
-          className="my-4 flex cursor-pointer flex-col rounded-md border border-solid border-u+sunny px-2 py-3 hover:bg-u+sunny/40 lg:hidden"
+          className="my-4 flex cursor-pointer flex-col ml-auto rounded-md border border-solid border-u+sunny px-2 py-3 hover:bg-u+sunny/40 lg:hidden"
           onClick={() => setIsOpen(!isOpen)}
         >
           <div className="mb-1 h-0.5 w-5 bg-u+sunny"></div>
@@ -130,9 +132,12 @@ export function Header({
               );
             })}
             <div className="flex items-center gap-5">
-              <Button className="bg-u+sunny px-3 py-0 text-lg text-u+green hover:bg-u+sunny/80">
-                Ilmoittaudu
-              </Button>
+              <a
+            href={signupUrl}
+            className="hidden:lg h-9 items-center justify-center whitespace-nowrap rounded-md bg-u+green/50 bg-u+sunny px-3 pt-1 text-lg font-bold text-u+green ring-offset-background  transition-colors hover:bg-u+sunny/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 md:inline-flex"
+          >
+            {langCode === "fi" ? "Ilmoittaudu" : "Sign Up"}
+          </a>
               <LanguageSelect language={langCode} />
             </div>
           </motion.nav>
