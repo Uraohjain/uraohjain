@@ -19,6 +19,11 @@ const parts = pathname.split('/');
 const number = parts[parts.length - 1];
 const id = number-1;
 
+const renderer = new marked.Renderer();
+renderer.listitem = (text) => {
+  return `<li>${text.replace(/<\/?p>/g, '<span>').replace(/<\/span>/g, '</span>')}</li>`;
+};
+
 
 ---
 
@@ -38,7 +43,7 @@ const id = number-1;
     </header>
     <article class="flex flex-col">
       <main class="text-xl">
-      <div set:html={marked.parse(posts[id].attributes.postContent)} class={styles.pageContent}/>
+      <div set:html={marked.parse(posts[id].attributes.postContent, { renderer })} class={styles.pageContent}/>
       </main>
     </article>
   </main>
