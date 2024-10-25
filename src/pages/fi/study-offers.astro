@@ -142,7 +142,7 @@ const sortedStudy = study.sort((a, b) => {
                 client:idle
                 className="cursor-pointer" 
               >
-                <div class="rounded-full bg-white px-8 py-6">
+                <div class="rounded-full bg-white p-6">
                   {course.attributes.tag === "media" ? (
                     <svg
                       width="59"
@@ -226,8 +226,8 @@ const sortedStudy = study.sort((a, b) => {
                     </svg>
                   )}
                 </div>
-                <p class="m-0 p-0 font-bold">{course.attributes.title}</p>
-                <p class="m-0 p-0">{course.attributes.field}</p>
+                <p class="m-0 pt-3 font-bold">{course.attributes.title}</p>
+                <p class="m-0 px-5 text-center">{course.attributes.field}</p>
               </CourseDialog>
             </li>
           ))
