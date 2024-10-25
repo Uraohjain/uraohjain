@@ -82,7 +82,7 @@ export const FOOTER: Footer = {
   en: {
     footer: {
       logo: "/img/logo.svg",
-      title: "Brighten up your career plan and strengthen your skills!",
+      title: "Clarify your career plan and strengthen your skills!",
       description:
         "Uraohjain+ is a joint development project of StadinAO, Laurea University of Applied Sciences and Metropolia University of Applied Sciences. The project is co-funded by the EU. The development work is carried out in close cooperation with Helsinki Employment Services and Virittämö.",
       eu: "/img/frontpage/europe-en.svg",
