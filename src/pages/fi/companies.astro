@@ -1,8 +1,25 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/Base.astro";
+import fetchApi from "../../lib/strapi";
+import type CompanyResponse from "../../interfaces/company";
 
 const pageTitle = "Yrityksille";
+
+// Fetch the data from the API
+const company = await fetchApi<{ data: CompanyResponse[] }>({
+  endpoint: 'company', // the content type to fetch
+  wrappedByKey: 'data', // the key to unwrap the response
+});
+
+// Function to replace newlines with <br> tags and return null for empty text
+const formatText = (text: string | null) => {
+  if (!text) return null;
+  return text.replace(/\n/g, '<br>');
+};
+
+// Convert text to HTML
+const formattedHtmlContent = company ? formatText(company.attributes.InfoText) : null;
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -15,33 +32,21 @@ const pageTitle = "Yrityksille";
       <div class="grid grid-cols-1 md:grid-cols-2">
         <div class="md:p-18 bg-u+pinky p-8">
           <h2 class="pb-7 pt-6 text-[2rem] font-bold">
-            Rekrytoitko ICT-, ohjelmisto- tai media-alalle työntekijöitä?
+            {company.attributes.Title}
           </h2>
-          <p class="text-xl font-light">
-            Uuden työllistymistä edistävän toimintamallin kehittänyt Uraohjain+
-            -kehityshanke etsii yhteistyökumppaneita. Etsimämme
-            yhteistyökumppanit ovat valmiita vaikuttamaan työvoimatarjonnan
-            kehittämiseen omia tarpeitaan parhaiten vastaavaksi. <br /><br /> Uraohjain-palvelussa
-            kehitetään yritysten työvoimatarpeisiin perustuen työnhakijoiden osaamista
-            ja muita valmiuksia sekä yleisellä tasolla että yrityskohtaisesti. Yrityksen
-            yhteistyö palvelun kanssa koostuu osaamis- ja työvoimatarpeita kartoittavista
-            tapaamisista ja esitystilaisuuksista sekä palveluun osallistuvien työnhakijoiden
-            huomioimisesta rekrytoinneissa. <br /><br /> Uraohjain-palvelussa työnhakijat
-            kehittävät ICT-, ohjelmisto- tai media-alan osaamistaan, uranhallintataitojaan
-            sekä vahvistavat toimintavalmiuksiaan. Toimintamallin perusteet on luotu
-            aiemmissa hankkeissa, joissa on saavutettu hyviä tuloksia. <br />
-            <br /> Palvelu on tarkoitettu työttömille toisen tai korkea-asteen tutkinnon
-            suorittaneille, jotka hakevat töitä ICT-, ohjelmistokehitys- tai media-alalta.
-            Uraohjain+-hanketta toteuttavat Helsingin kaupunki (Stadin AO), Laurea-ammattikorkeakoulu
-            ja Metropolia Ammattikorkeakoulu. Hanke on Euroopan unionin osarahoittama.
-            <br /><br />
+          <p set:html={formattedHtmlContent} class="text-xl font-light">
           </p>
-          <h4 class="text-xl font-black">
-            Kiinnostuitko? <br /> Ota yhteyttä: <a
-              href="mailto:jaakko.hyytia@hel.fi"
-              class="hover:underline">jaakko.hyytia@hel.fi</a
-            >
-          </h4>
+
+          {company && company.attributes.Interested === true && (
+            <h4 class="text-xl font-black mt-6">
+              Kiinnostuitko? <br /> Ota yhteyttä: <a
+                href="mailto:jaakko.hyytia@hel.fi"
+                class="hover:underline"
+              >
+                jaakko.hyytia@hel.fi
+              </a>
+            </h4>
+          )}
         </div>
         <figure class="hidden md:block">
           <Image

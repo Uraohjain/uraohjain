@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/Base.astro";
 import fetchApi from "../../lib/strapi";
 import type ContactResponse from "../../interfaces/contact";
+import type UraohjainResponse from "../../interfaces/uraohjain";
 
 const pageTitle = "URAOHJAIN+ -yhteiskehittämishanke";
 
@@ -20,6 +21,21 @@ const contactLists = {
   Metropolia: contactData.ContactListMetropolia,
   Laurea: contactData.ContactListLaurea,
 };
+
+// Fetch the data from the API
+const uraohjain = await fetchApi<{ data: UraohjainResponse[] }>({
+  endpoint: 'uraohjain', // the content type to fetch
+  wrappedByKey: 'data', // the key to unwrap the response
+});
+
+// Function to replace newlines with <br> tags and return null for empty text
+const formatText = (text: string | null) => {
+  if (!text) return null;
+  return text.replace(/\n/g, '<br>');
+};
+
+// Convert text to HTML
+const formattedHtmlContent = uraohjain ? formatText(uraohjain.attributes.InfoText) : null;
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -32,22 +48,9 @@ const contactLists = {
       <div class="grid grid-cols-1 md:grid-cols-2">
         <div class="md:p-18 bg-u+pinky p-8">
           <h2 class="pb-7 pt-6 text-[2rem] font-bold">
-            URAOHJAIN+ rakentaa uudenlaisen kestävän työllistymisen mallin
+            {uraohjain.attributes.Title}
           </h2>
-          <p class="text-xl font-light">
-            URAOHJAIN+ -hanke on noussut tarpeesta lisätä ICT-,
-            ohjelmistokehitys- ja media-alojen työnhakijoiden ja työnantajien
-            kohtaamista. Hankkeessa kehitettävä Uraohjain-palvelu vahvistaa
-            ICT-, ohjelmistokehitys- ja media-alan työnhakijoiden osaamista
-            vastaamaan työelämän tarpeisiin. Samalla vastataan yritysten
-            rekrytointihaasteeseen. <br /><br /> Uraohjain-palvelu on tarkoitettu
-            ICT-, ohjelmistokehitys- ja media-alan työttömille työnhakijoille, joilla
-            on tarve täydentää osaamistaan ja kehittää työllistymis- ja urasuunnittelutaitojaan.
-            Palvelun aikana vahvistetaan arkea ja työllistymistä tukevaa hyvinvointia.
-            <br /><br /> URAOHJAIN+ on Stadin ammattiopiston, Laurea-ammattikorkeakoulun
-            ja Metropolia Ammattikorkeakoulun yhteishanke. Yhteistyötä tehdään Helsingin
-            kaupungin Työllisyyspalveluiden sekä yritysten kanssa. Euroopan unionin
-            sosiaalirahasto osarahoittaa hanketta.
+          <p set:html={formattedHtmlContent} class="text-xl font-light">
           </p>
         </div>
         <figure class="hidden md:block">
