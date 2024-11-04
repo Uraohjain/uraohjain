@@ -176,10 +176,11 @@ export function CourseDialog({
               ))}
             </ul>
           )}
-          <div className="flex flex-col items-center">
+          {/* ajankohtaista removed until next courses start */}
+          {/* <div className="flex flex-col items-center">
             <p className="font-bold">{checkLang() ? "Topical" : "Ajankohtaista" }</p>
             <p>{course.attributes.time}</p>
-          </div>
+          </div> */}
         </div>
         <div className="flex justify-end absolute bottom-0 right-0 mb-4 mr-4">
         <Button variant="circular" onClick={() => copyToClipboard()}>
