@@ -18,5 +18,5 @@ interface Contact {
     Title: string | null;
     Phone: string | null;
     Email: string | null;
-    TitleEn?: string | null; // Optional field, adjust based on data
+    TitleEn?: string | null;
 }
