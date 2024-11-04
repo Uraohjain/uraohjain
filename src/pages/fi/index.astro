@@ -1,11 +1,12 @@
 ---
-import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/Base.astro";
 import { Separator } from "../../components/ui/seperator";
 import fetchApi from "../../lib/strapi";
 import type InfoResponse from "../../interfaces/info";
+// import { ClickableDiv } from "../../components/ClickableDiv"
 
 const pageTitle = "Etusivu";
+// const currentPage = Astro.url.pathname;
 
 // Fetch the data from the API
 const info = await fetchApi<{ data: InfoResponse[] }>({
@@ -26,18 +27,18 @@ const formattedHtmlContent = info ? formatText(info.attributes.infotext) : null;
 <BaseLayout pageTitle={pageTitle}>
   <main class="px-5 pb-16 md:px-[5.625rem]">
     <section class="px-0 md:px-20">
-      <div class="pb-16 pt-10 text-center">
+      <div class="lg:pb-16 pb-7 pt-10 text-center">
         <h1
-          class="pb-4 text-center text-sm font-medium leading-tight tracking-[1rem] text-u+burg md:text-[2.5rem]"
+          class="pb-4 text-center text-[1.5rem] font-medium leading-tight tracking-[1rem] text-u+burg md:text-[2.5rem]"
         >
           URAOHJAIN
         </h1>
         <span
-          class="text-center text-sm font-light leading-tight text-u+burg md:text-[2.5rem]"
+          class="text-center text-[1.5rem] font-light leading-tight text-u+burg md:text-[2.5rem]"
           >ICT-, ohjelmistokehitys- ja media-alan työnhakijoille</span
         >
       </div>
-      <p class="mb-4 text-balance text-center leading-9 md:mb-14 md:text-2xl">
+      <p class="mb-4 text-balance text-[1.125rem] text-center leading-9 md:mb-14 md:text-2xl">
         Tule täydentämään osaamistasi työelämän nopeita muutostarpeita
         vastaavaksi, suunnittelemaan uraasi ja oivaltamaan lisää oman osaamisesi
         markkinoinnista. Pääset keskustelemaan oman arkesi hyvinvoinnista
@@ -61,10 +62,9 @@ const formattedHtmlContent = info ? formatText(info.attributes.infotext) : null;
         }
       </section>
     </section>
-  </main>
   <!-- Benefits section -->
   <section class="flex flex-col items-center p-4 md:px-16 md:py-8">
-    <h3 class="pb-8 text-[2rem] font-bold">Uraohjain-palvelussa saat:</h3>
+    <h3 class="pb-8 text-[2rem] font-bold">Uraohjain-palvelun osa-alueet:</h3>
     <ul
       class="flex h-full flex-col items-start gap-4 text-xl md:flex-row md:space-x-5"
     >
@@ -283,7 +283,7 @@ const formattedHtmlContent = info ? formatText(info.attributes.infotext) : null;
   </section>
   <!-- Video section --->
   <section class="flex flex-col items-center pt-6">
-    <h3 class="py-8 text-3xl font-bold">
+    <h3 class="py-8 px-8 text-3xl font-bold">
       Kirkasta urasuunnitelmasi ja vahvista osaamistasi
     </h3>
     <video class="w-full border" autoplay loop controls muted>
@@ -309,26 +309,29 @@ const formattedHtmlContent = info ? formatText(info.attributes.infotext) : null;
       </ul>
     </div>
     <!-- Take test section -->
+    <!-- <ClickableDiv currentPage={currentPage} client:only="react"/> -->
     <div
-      class="mt-4 flex items-center justify-center bg-u+sunny py-12 md:ml-5 md:mt-0 md:basis-2/5"
-    >
-      <h2 class="text-[2rem] font-semibold text-u+green underline">
-        <a href="/fi/signup">
-          Testaa sopiiko <br />Uraohjain-palvelu <br />sinulle ja ilmoittaudu!
-        </a>
-      </h2>
-    </div>
+    class="mt-4 flex items-center px-6 justify-center bg-u+sunny py-12 md:ml-5 md:mt-0 md:basis-2/5"
+  >
+    <h2 class="text-[2rem] font-semibold text-u+green">
+        Ilmoittautuminen Uraohjain-palveluun on päättynyt.
+    </h2>
+  </div>
   </section>
   <!-- Service path -->
   <section class="flex flex-col items-center justify-center">
     <h2 class="pb-4 pt-10 text-center text-[2rem] font-bold text-u+burg">
       Palvelupolku
     </h2>
-    <Image
-      src="/img/frontpage/service-path.png"
-      alt="service-path"
-      width={2000}
-      height={2000}
-    />
+    <picture>
+      <source srcset="/img/frontpage/mobile-path.png" media="(max-width: 767px)" />
+      <img
+        src="/img/frontpage/service-path.png"
+        alt="service-path"
+        width={2000}
+        height={2000}
+      />
+    </picture>
   </section>
+</main>
 </BaseLayout>

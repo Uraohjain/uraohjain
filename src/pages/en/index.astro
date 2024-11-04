@@ -1,11 +1,12 @@
 ---
-import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/Base.astro";
 import { Separator } from "../../components/ui/seperator";
 import fetchApi from '../../lib/strapi';
 import type InfoResponse from '../../interfaces/info';
+// import { ClickableDiv } from "../../components/ClickableDiv";
 
 const pageTitle = "Home";
+// const currentPage = Astro.url.pathname;
 
 // Fetch the data from the API
 const info = await fetchApi<{ data: InfoResponse[] }>({
@@ -26,18 +27,18 @@ const formattedHtmlContent = info ? formatText(info.attributes.infotextEn) : nul
 <BaseLayout pageTitle={pageTitle}>
   <main class="px-5 pb-16 md:px-[5.625rem]">
     <section class="px-0 md:px-20">
-      <div class="pb-16 pt-10 text-center">
+      <div class="lg:pb-16 pb-7 pt-10 text-center">
         <h1
-          class="pb-4 text-sm font-medium leading-tight tracking-[1rem] text-u+burg md:text-[2.5rem]"
+          class="pb-4 text-[1.5rem] font-medium leading-tight tracking-[1rem] text-u+burg md:text-[2.5rem]"
         >
         URAOHJAIN
         </h1>
         <span
-          class="text-sm font-light leading-tight text-u+burg md:text-[2.5rem]"
+          class="text-[1.5rem] font-light leading-tight text-u+burg md:text-[2.5rem]"
           >For jobseekers in ICT, software development and media</span
         >
       </div>
-      <p class="mb-4 text-balance text-center leading-9 md:mb-14 md:text-2xl">
+      <p class="mb-4 text-balance text-[1.125rem] text-center leading-9 md:mb-14 md:text-2xl">
         Come supplement your skills to make them meet the rapidly changing needs
         of working life, plan your career and learn more about verbalising and
         marketing your own know-how. You will get to discuss your everyday
@@ -62,7 +63,7 @@ const formattedHtmlContent = info ? formatText(info.attributes.infotextEn) : nul
     <!-- Benefits section -->
     <section class="flex flex-col items-center p-4 md:px-16 md:py-8">
       <h3 class="pb-8 text-[2rem] font-bold">
-        The Uraohjain service will provide you with:
+        Components of the Uraohjain service:
       </h3>
       <ul
         class="flex h-full flex-col items-start gap-4 text-xl md:flex-row md:space-x-5"
@@ -282,11 +283,11 @@ const formattedHtmlContent = info ? formatText(info.attributes.infotextEn) : nul
     </section>
     <!-- Video section -->
     <section class="flex flex-col items-center pt-6">
-      <h3 class="py-8 text-3xl font-bold">
-        Brighten up your career plan and strengthen your skills
+      <h3 class="py-8 px-8 text-3xl font-bold">
+        Clarify your career plan and strengthen your skills
       </h3>
       <video class="w-full border" autoplay loop controls muted>
-        <source src="https://uraohjain.hel.fi/strapi/uploads/uraohjain_presentation_en_4552465f5a.mp4" type="video/mp4" />
+        <source src="https://uraohjain.hel.fi/strapi/uploads/Uraohjain_Esittelyvideo_englanniksi_puhuttu_and_tekstitetty_1_4fe52facdd.mp4" type="video/mp4" />
       </video>
     </section>
     <!-- Profile section -->
@@ -312,29 +313,29 @@ const formattedHtmlContent = info ? formatText(info.attributes.infotextEn) : nul
         </ul>
       </div>
       <!-- Take test section -->
+      <!-- <ClickableDiv currentPage={currentPage} client:only="react"/> -->
       <div
-        class="mt-4 flex items-center justify-center bg-u+sunny py-12 md:ml-5 md:mt-0 md:basis-2/5"
-      >
-        <h2 class="text-[2rem] font-semibold text-u+green underline">
-          <a href="/en/signup">
-            Take our test to see <br />
-            whether the service is <br />
-            right for you and sign up!
-          </a>
-        </h2>
-      </div>
+      class="mt-4 flex items-center px-6 justify-center bg-u+sunny py-12 md:ml-5 md:mt-0 md:basis-2/5"
+    >
+      <h2 class="text-[2rem] font-semibold text-u+green">
+        Registration for the Uraohjain-service has closed.
+      </h2>
+    </div>
     </section>
     <!-- Service path -->
     <section class="flex flex-col items-center justify-center">
       <h2 class="pb-4 pt-10 text-center text-[2rem] font-bold text-u+burg">
         Service path
       </h2>
-      <Image
-        src="/img/frontpage/service-path-en.png"
-        alt="service-path"
-        width={2000}
-        height={2000}
-      />
+      <picture>
+        <source srcset="/img/frontpage/mobile-path-en.png" media="(max-width: 767px)" />
+        <img
+          src="/img/frontpage/service-path-en.png"
+          alt="service-path"
+          width={2000}
+          height={2000}
+        />
+      </picture>
     </section>
   </main>
 </BaseLayout>
