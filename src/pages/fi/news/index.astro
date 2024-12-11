@@ -1,52 +1,51 @@
 ---
 import BaseLayout from "../../../layouts/Base.astro";
 import NewsCard from "../../../components/NewsCard.astro";
-import fetchApi from '../../../lib/strapi';
-import type Post from '../../../interfaces/post';
+import fetchApi from "../../../lib/strapi";
+import type Post from "../../../interfaces/post";
 const pageTitle = "Ajankohtaiset";
 
 const posts = await fetchApi<Post[]>({
-  endpoint: 'posts?populate=postImage', // the content type to fetch
-  wrappedByKey: 'data', // the key to unwrap the response
+  endpoint: "posts?populate=postImage", // the content type to fetch
+  wrappedByKey: "data", // the key to unwrap the response
 });
 
 const strapiUrl = import.meta.env.STRAPI_URL;
 const siteUrl = import.meta.env.SITE_URL;
-
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <main class="h-full px-5 pb-16 md:px-[5.625rem]">
-      <div
-      class="flex grow flex-col items-center justify-center gap-4"
-    >
-    <h1 class="pb-4 pt-6 text-center text-[2rem] font-bold text-u+burg">
-      {pageTitle}
-    </h1>
-    <p class="max-w-[900px] p-3 text-center text-xl font-light md:p-0">
-        Ajankohtaiset-sivulta voit lukea Uraohjain+ -hankkeen kuulumisia 
-        sekä saada tietoa Uraohjain-palvelun tapahtumista.
+    <div class="flex grow flex-col items-center justify-center gap-4">
+      <h1 class="pb-4 pt-6 text-center text-[2rem] font-bold text-u+burg">
+        {pageTitle}
+      </h1>
+      <p class="max-w-[900px] p-3 text-center text-xl font-light md:p-0">
+        Ajankohtaiset-sivulta voit lukea Uraohjain+ -hankkeen kuulumisia sekä
+        saada tietoa Uraohjain-palvelun tapahtumista.
       </p>
-      </div>
-      <br><br>
-      <section aria-label="New Blog News" class="pb-10">
-        <ul class="flex flex-col sm:grid sm:grid-cols-2 md:grid md:grid-cols-3 md:gap-4 lg:grid-cols-4 justify-center">
-          {
-            posts.map((post, index) => (
-              <NewsCard
-                key={index}
-                title={post.attributes.title}
-                description={post.attributes.description}
-                imgsrc={`${strapiUrl}${post.attributes.postImage.data.attributes.url}`}
-                imgalt={`${strapiUrl}${post.attributes.postImage.data.attributes.alt}`}
-                url={siteUrl+"/fi/news"}
-                id={index+1}
-                tagType="h2"
-              />
-            ))
-          }
-        </ul>
-      </section>
-      <hr>                 
+    </div>
+    <br /><br />
+    <section aria-label="New Blog News" class="mx-auto w-fit pb-10">
+      <ul
+        class="grid grid-cols-1 gap-1 sm:grid sm:grid-cols-2 sm:gap-2 lg:grid-cols-3 lg:gap-4 xl:grid-cols-4"
+      >
+        {
+          posts.map((post, index) => (
+            <NewsCard
+              key={index}
+              title={post.attributes.title}
+              description={post.attributes.description}
+              imgsrc={`${strapiUrl}${post.attributes.postImage.data.attributes.url}`}
+              imgalt={`${strapiUrl}${post.attributes.postImage.data.attributes.alt}`}
+              url={siteUrl + "/fi/news"}
+              id={index + 1}
+              tagType="h2"
+            />
+          ))
+        }
+      </ul>
+    </section>
+    <hr />
   </main>
 </BaseLayout>
